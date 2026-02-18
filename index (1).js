@@ -1574,20 +1574,20 @@ bot.start(async (ctx) => {
 
     const keyboard = [
     [
-       {
-            text: "ᖫ ⟸ ʙᴀᴄᴋ ᖭ",
-            callback_data: "/backpanel"
-        },
-        {
-            text: "⌜ Dҽʋҽʅσρҽɾ ⌟",
-            url: "https://t.me/thezarxx"
-        },
-        {
-            text: "ᖫ ɴᴇxᴛ ⟹ ᖭ",
-            callback_data: "/controls"
-        }
-    ]
-];
+          { text: "(⸙) ᴀᴛᴛᴀᴄᴋ", callback_data: "bug" },
+          { text: "(〆) ᴛᴏᴏʟs", callback_data: "tools" },
+          { text: "(☏) ᴀᴜᴛʜᴏʀ", url: "https://t.me/MbapeGnteng" }
+          ],
+         [
+         { text: "(𒆜) ᴄʜᴀɴᴇʟ", url: "https://t.me/Testimbape" },
+         { text: "(𓀬)ᴏᴡɴᴇʀ", callback_data: "controls" }
+         ],
+         [
+          { text: "(☘︎) ᴛǫᴛᴏ", callback_data: "tqto" }
+         ]
+        ]
+    }
+  });
 
   ctx.replyWithPhoto(thumbnailUrl, {
         caption: menuMessage,
@@ -1628,20 +1628,20 @@ bot.action('/start', async (ctx) => {
 
     const keyboard = [
     [
-       {
-            text: "ᖫ ⟸ ʙᴀᴄᴋ ᖭ",
-            callback_data: "/backpanel"
-        },
-        {
-            text: "⌜ Dҽʋҽʅσρҽɾ ⌟",
-            url: "https://t.me/XavienZzTamvan"
-        },
-        {
-            text: "ᖫ ɴᴇxᴛ ⟹ ᖭ",
-            callback_data: "/controls"
-            }
+          { text: "(⸙) ʙᴜɢ", callback_data: "bug" },
+          { text: "(〆) ᴛᴏᴏʟs", callback_data: "tools" },
+          { text: "(☏) ᴋɪɴɢ", url: "https://t.me/MbapeGnteng" }
+          ],
+         [
+         { text: "(𒆜) ᴄʜᴀɴᴇʟ", url: "https://t.me/Testimbape" },
+         { text: "(𓀬)ᴏᴡɴᴇʀ", callback_data: "controls" }
+         ],
+         [
+          { text: "(☘︎) ᴛǫᴛᴏ", callback_data: "tqto" }
+         ]
         ]
-    ];
+    }
+  });
 
     try {
         await ctx.editMessageMedia({
