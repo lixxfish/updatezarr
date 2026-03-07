@@ -2200,13 +2200,13 @@ bot.command("extremedelay", checkWhatsAppConnection, checkPremium, async (ctx) =
   let target = q.replace(/[^0-9]/g, '') + "@s.whatsapp.net";
   const processMessage = await ctx.reply(
 `\`\`\`js
-⬡═―—⊱ ⎧ Tredict Invictus ⎭ ⊰―—═⬡
+⬡═―—⊱ ⎧ Voidline Ghost ⎭ ⊰―—═⬡
 ⌑ Target: ${q}
 ⌑ Type: Delay Can Spam
 ⌑ Status: Sending…
 \`\`\``,
     {
-      parse_mode: "HTML",
+      parse_mode: "Markdown",
       reply_markup: {
         inline_keyboard: [[
           { text: "⌜📱⌟ Target", url: `https://wa.me/${q}` }
@@ -2225,7 +2225,7 @@ bot.command("extremedelay", checkWhatsAppConnection, checkPremium, async (ctx) =
     processMessage.message_id,
     undefined,
 `\`\`\`js
-⬡═―—⊱ ⎧ Tredict Invictus ⎭ ⊰―—═⬡
+⬡═―—⊱ ⎧ Voidline Ghost ⎭ ⊰―—═⬡
 ⌑ Target   : ${q}
 ⌑ Result   : Delivered
 ⌑ Effect   :
@@ -2236,7 +2236,7 @@ bot.command("extremedelay", checkWhatsAppConnection, checkPremium, async (ctx) =
 ⌑ Status   : Executed Successfully
 \`\`\``,
     {
-      parse_mode: "HTML",
+      parse_mode: "Markdown",
       reply_markup: {
         inline_keyboard: [[
           { text: "⌜📱⌟ ☇ Target", url: `https://wa.me/${q}` }
@@ -2253,13 +2253,13 @@ bot.command("majesticdelay", checkWhatsAppConnection, checkPremium, async (ctx) 
   let target = q.replace(/[^0-9]/g, '') + "@s.whatsapp.net";
   const processMessage = await ctx.reply(
 `\`\`\`js
-⬡═―—⊱ ⎧ Tredict Invictus ⎭ ⊰―—═⬡
+⬡═―—⊱ ⎧ Voidline Ghost ⎭ ⊰―—═⬡
 ⌑ Target: ${q}
 ⌑ Type: Delay Murbug
 ⌑ Status: Sending…
 \`\`\``,
     {
-      parse_mode: "HTML",
+      parse_mode: "Markdown",
       reply_markup: {
         inline_keyboard: [[
           { text: "⌜📱⌟ Target", url: `https://wa.me/${q}` }
@@ -2278,7 +2278,7 @@ bot.command("majesticdelay", checkWhatsAppConnection, checkPremium, async (ctx) 
     processMessage.message_id,
     undefined,
 `\`\`\`js
-⬡═―—⊱ ⎧ Tredict Invictus ⎭ ⊰―—═⬡
+⬡═―—⊱ ⎧ Voidline Ghost ⎭ ⊰―—═⬡
 ⌑ Target   : ${q}
 ⌑ Result   : Delivered
 ⌑ Effect   :
@@ -2289,7 +2289,7 @@ bot.command("majesticdelay", checkWhatsAppConnection, checkPremium, async (ctx) 
 ⌑ Status   : Executed Successfully
 \`\`\``,
     {
-      parse_mode: "HTML",
+      parse_mode: "Markdown",
       reply_markup: {
         inline_keyboard: [[
           { text: "⌜📱⌟ ☇ Target", url: `https://wa.me/${q}` }
@@ -2306,13 +2306,13 @@ bot.command("xspam", checkWhatsAppConnection, checkPremium, async (ctx) => {
   let target = q.replace(/[^0-9]/g, '') + "@s.whatsapp.net";
   const processMessage = await ctx.reply(
 `\`\`\`js
-⬡═―—⊱ ⎧ Tredict Invictus ⎭ ⊰―—═⬡
+⬡═―—⊱ ⎧ Voidline Ghost ⎭ ⊰―—═⬡
 ⌑ Target: ${q}
 ⌑ Type: Fc Murbug
 ⌑ Status: Sending…
 \`\`\``,
     {
-      parse_mode: "HTML",
+      parse_mode: "Markdown",
       reply_markup: {
         inline_keyboard: [[
           { text: "⌜📱⌟ Target", url: `https://wa.me/${q}` }
@@ -2331,7 +2331,7 @@ bot.command("xspam", checkWhatsAppConnection, checkPremium, async (ctx) => {
     processMessage.message_id,
     undefined,
 `\`\`\`js
-⬡═―—⊱ ⎧ Tredict Invictus ⎭ ⊰―—═⬡
+⬡═―—⊱ ⎧ Voidline Ghost ⎭ ⊰―—═⬡
 ⌑ Target   : ${q}
 ⌑ Result   : Delivered
 ⌑ Effect   :
@@ -2342,7 +2342,7 @@ bot.command("xspam", checkWhatsAppConnection, checkPremium, async (ctx) => {
 ⌑ Status   : Executed Successfully
 \`\`\``,
     {
-      parse_mode: "HTML",
+      parse_mode: "Markdown",
       reply_markup: {
         inline_keyboard: [[
           { text: "⌜📱⌟ ☇ Target", url: `https://wa.me/${q}` }
@@ -2359,7 +2359,7 @@ bot.command("jembod", checkWhatsAppConnection, checkPremium, async (ctx) => {
   let target = q.replace(/[^0-9]/g, '') + "@s.whatsapp.net";
   const processMessage = await ctx.reply(
 `\`\`\`js
-⬡═―—⊱ ⎧ Tredict Invictus ⎭ ⊰―—═⬡
+⬡═―—⊱ ⎧ Voidline Ghost ⎭ ⊰―—═⬡
 ⌑ Target: ${q}
 ⌑ Type: Crash Murbug
 ⌑ Status: Sending…
@@ -2384,7 +2384,7 @@ bot.command("jembod", checkWhatsAppConnection, checkPremium, async (ctx) => {
     processMessage.message_id,
     undefined,
 `\`\`\`js
-⬡═―—⊱ ⎧ Tredict Invictus ⎭ ⊰―—═⬡
+⬡═―—⊱ ⎧ Voidline Ghost ⎭ ⊰―—═⬡
 ⌑ Target   : ${q}
 ⌑ Result   : Delivered
 ⌑ Effect   :
